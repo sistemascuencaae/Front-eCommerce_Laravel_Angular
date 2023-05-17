@@ -1,5 +1,5 @@
-  <!-- breadcrumbs -->
-  <div class="container">
+<!-- breadcrumbs -->
+<div class="container">
     <div class="breadcrumbs">
         <a href="index-1.html"><i class="las la-home"></i></a>
         <a href="#" class="active">Register</a>
@@ -18,37 +18,47 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="single_billing_inp">
-                                    <label>Full Name <span>*</span></label>
-                                    <input type="text" placeholder="Jone Doe">
+                                    <label>Nombre: <span>*</span></label>
+                                    <input type="text" [(ngModel)]="name" name="name" placeholder="Jone Doe">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="single_billing_inp">
-                                    <label>Email Address <span>*</span></label>
-                                    <input type="email" placeholder="example@mail.com">
+                                    <label>Apellido: <span>*</span></label>
+                                    <input type="text" [(ngModel)]="surname" name="surname" placeholder="Jone Doe">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="single_billing_inp">
-                                    <label>Password <span>*</span></label>
-                                    <input type="password" placeholder="type password">
+                                    <label>Email: <span>*</span></label>
+                                    <input type="email" [(ngModel)]="email" name="email" placeholder="example@mail.com">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="single_billing_inp">
-                                    <label>Confirm Password <span>*</span></label>
-                                    <input type="password" placeholder="confirm your password">
+                                    <label>Contraseña: <span>*</span></label>
+                                    <input type="password" [(ngModel)]="password" name="password"
+                                        placeholder="type password">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Confirmar Contraseña: <span>*</span></label>
+                                    <input type="password" [(ngModel)]="repit_password" name="repit_password"
+                                        placeholder="confirm your password">
                                 </div>
                             </div>
                             <div class="col-12 mt-2">
                                 <div class="custom_check check_2 d-flex align-items-center">
                                     <input type="checkbox" class="check_inp" hidden id="save-default">
-                                    <label for="save-default">I have read and agree to the <a href="terms-condition.html"
-                                            class="text-color">terms & conditions</a> </label>
+                                    <label for="save-default">I have read and agree to the <a
+                                            href="terms-condition.html" class="text-color">terms & conditions</a>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-12 mt-3">
-                                <button type="submit" class="default_btn xs_btn rounded px-4 d-block w-100">create
+                                <button type="submit" (click)="registro()"
+                                    class="default_btn xs_btn rounded px-4 d-block w-100">create
                                     account</button>
                             </div>
 
@@ -68,7 +78,8 @@
                         </button>
                     </div>
 
-                    <p class="text-center mt-3 mb-0">Already have an account.? <a href="login.html" class="text-color">Login Now</a></p>
+                    <p class="text-center mt-3 mb-0">Already have an account.? <a href="login.html"
+                            class="text-color">Login Now</a></p>
 
                 </div>
             </div>

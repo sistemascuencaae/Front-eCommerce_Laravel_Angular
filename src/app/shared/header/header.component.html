@@ -3,7 +3,7 @@
     <div class="container">
         <div class="d-flex align-items-center">
             <div class="logo">
-                <a href="index-1.html">
+                <a routerLink="/">
                     <img loading="lazy" src="assets/images/svg/logo.svg" alt="logo">
                 </a>
             </div>
@@ -505,10 +505,11 @@
                     </a>
                     <div class="myacc_cont">
                         <div class="ac_join">
-                            <p>Welcome to RAFCART Shop</p>
+                            <p *ngIf="user">Welcome {{ user.name }} to RAFCART Shop</p>
+                            <p *ngIf="!user">Welcome to RAFCART Shop</p>
                             <div class="account_btn d-flex justify-content-between">
-                                <a href="register.html" class="default_btn">Join</a>
-                                <a href="login.html" class="default_btn second">Sing in</a>
+                                <a routerLink="/auth/register" class="default_btn">Join</a>
+                                <a routerLink="/auth/login" class="default_btn second">Sing in</a>
                             </div>
                         </div>
                         <div class="ac_links">
@@ -528,7 +529,8 @@
                                 <i class="icon-cart"></i>
                                 My Cart
                             </a>
-                            <a href="login.html">
+                            <a href="#" onclick="return false;" (click)="logout()">
+                                <!-- OnClick en false Evita que recargue la página y el Click solo para que se ejecute esa función -->
                                 <i class="las la-power-off"></i>
                                 Log out
                             </a>
