@@ -59,41 +59,41 @@ function initPageEcommerce($) {
     });
 
     // Hero slider
-    $('.hero_slider_active').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        dots: true
-    });
+    // $('.hero_slider_active').slick({
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     arrows: false,
+    //     dots: true
+    // });
 
     // single product view slider
-    $('.product_view_slider').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.product_viewslid_nav',
-        infinite: false
-    });
+    // $('.product_view_slider').slick({
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     arrows: false,
+    //     fade: true,
+    //     asNavFor: '.product_viewslid_nav',
+    //     infinite: false
+    // });
 
     // single product view slider nav
-    $('.product_viewslid_nav').slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        prevArrow: '<button type="button" class="slick-prev"><i class="las la-angle-left"></i></button>',
-        nextArrow: '<button type="button" class="slick-next"><i class="las la-angle-right"></i></button>',
-        asNavFor: '.product_view_slider',
-        focusOnSelect: true,
-        centerMode: false,
-        centerPadding: '0px',
-        infinite: false,
-        responsive: [{
-            breakpoint: 576,
-            settings: {
-                slidesToShow: 3,
-            }
-        }]
-    });
+    // $('.product_viewslid_nav').slick({
+    //     slidesToShow: 5,
+    //     slidesToScroll: 1,
+    //     prevArrow: '<button type="button" class="slick-prev"><i class="las la-angle-left"></i></button>',
+    //     nextArrow: '<button type="button" class="slick-next"><i class="las la-angle-right"></i></button>',
+    //     asNavFor: '.product_view_slider',
+    //     focusOnSelect: true,
+    //     centerMode: false,
+    //     centerPadding: '0px',
+    //     infinite: false,
+    //     responsive: [{
+    //         breakpoint: 576,
+    //         settings: {
+    //             slidesToShow: 3,
+    //         }
+    //     }]
+    // });
 
     // product slider
     $('.product_slider_2').slick({
@@ -389,4 +389,114 @@ function initPageEcommerce($) {
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
+}
+
+function hero_slider_active() {
+    $('.hero_slider_active').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true
+    });
+}
+
+function loadModalDetailProduct() {
+    $('.close_quickview').on('click', function () {
+        $('.product_quickview').removeClass('active');
+        $('body').css('overflow-y', 'auto')
+    })
+    $('.product_view_slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.product_viewslid_nav',
+        infinite: false
+    });
+    $('.product_viewslid_nav').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        prevArrow: '<button type="button" class="slick-prev"><i class="las la-angle-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next"><i class="las la-angle-right"></i></button>',
+        asNavFor: '.product_view_slider',
+        focusOnSelect: true,
+        centerMode: false,
+        centerPadding: '0px',
+        infinite: false,
+        responsive: [{
+            breakpoint: 576,
+            settings: {
+                slidesToShow: 3,
+            }
+        }]
+    });
+}
+
+function alertDanger(TEXT) {
+    const notification = document.getElementById("notification-ecommerce-danger");
+    const closeBtn = document.getElementById("close");
+
+    notification?.classList.add("notification-show");
+
+    var SECONDS = 0;
+    var showTime = () => {
+        SECONDS++;
+        $("#notification-ecommerce-danger .btn-secondary").text(SECONDS);
+    };
+    $("#notification-ecommerce-danger .text-message-notification").text(TEXT);
+    var timer = setInterval(showTime, 1000);
+    setTimeout(() => {
+        clearInterval(timer);
+        document.getElementById("notification-ecommerce-danger")?.classList.remove("notification-show");
+    }, 6000);
+
+    closeBtn.addEventListener("click", () => {
+        document.getElementById("notification-ecommerce-danger")?.classList.remove("notification-show");
+    });
+}
+
+function alertWarning(TEXT) {
+    const notification = document.getElementById("notification-ecommerce-warning");
+    const closeBtn = document.getElementById("close");
+
+    notification?.classList.add("notification-show");
+
+    var SECONDS = 0;
+    var showTime = () => {
+        SECONDS++;
+        $("#notification-ecommerce-warning .btn-secondary").text(SECONDS);
+    };
+    $("#notification-ecommerce-warning .text-message-notification").text(TEXT);
+    var timer = setInterval(showTime, 1000);
+    setTimeout(() => {
+        clearInterval(timer);
+        document.getElementById("notification-ecommerce-warning")?.classList.remove("notification-show");
+    }, 6000);
+
+    closeBtn.addEventListener("click", () => {
+        document.getElementById("notification-ecommerce-warning")?.classList.remove("notification-show");
+    });
+}
+
+function alertSuccess(TEXT) {
+    const notification = document.getElementById("notification-ecommerce-success");
+    const closeBtn = document.getElementById("close");
+
+    notification?.classList.add("notification-show");
+
+    var SECONDS = 0;
+    var showTime = () => {
+        SECONDS++;
+        $("#notification-ecommerce-success .btn-secondary").text(SECONDS);
+    };
+    $("#notification-ecommerce-success .text-message-notification").text(TEXT);
+    var timer = setInterval(showTime, 1000);
+    setTimeout(() => {
+        clearInterval(timer);
+        document.getElementById("notification-ecommerce-success")?.classList.remove("notification-show");
+    }, 6000);
+
+    closeBtn.addEventListener("click", () => {
+        document.getElementById("notification-ecommerce-success")?.classList.remove("notification-show");
+    });
 }

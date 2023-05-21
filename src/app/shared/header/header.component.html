@@ -103,7 +103,7 @@
                     </span>
                     <span class="icon_text">All categories</span>
                 </div>
-                <div class="sub_categories active">
+                <div class="sub_categories " [class.active]="isRouterActive()">
                     <h5 class="d-block position-relative d-lg-none subcats_title">
                         All categories
                     </h5>
@@ -454,17 +454,34 @@
                             <i class="icon-cart"></i>
                         </span>
                         <span class="icon_text">Cart</span>
-                        <span class="pops">8</span>
+                        <span class="pops">{{ listCarts.length }}</span>
                     </a>
                     <div class="shopcart_dropdown">
                         <div class="cart_droptitle">
-                            <h4 class="text_lg">2 Items</h4>
+                            <h4 class="text_lg">{{ listCarts.length }} Items</h4>
                         </div>
                         <div class="cartsdrop_wrap">
-                            <a href="product-view.html" class="single_cartdrop mb-3">
+                            <ng-container *ngFor="let cart of listCarts">
+                                <a class="single_cartdrop mb-3">
+                                    <span class="remove_cart" (click)="removeItem(cart)"><i
+                                            class="las la-times"></i></span>
+                                    <div class="cartdrop_img">
+                                        <img loading="lazy" [src]="cart.product.imagen" alt="product">
+                                    </div>
+                                    <div class="cartdrop_cont">
+                                        <h5 class="text_lg mb-0 default_link">
+                                            <a [href]="'/producto/'+cart.product.slug">{{ cart.product.tittle }}</a>
+                                        </h5>
+                                        <p class="mb-0 text_xs text_p">x{{ cart.cantidad }} <span class="ms-2">{{
+                                                cart.total }} PEN</span></p>
+                                    </div>
+                                </a>
+                            </ng-container>
+
+                            <!-- <a href="product-view.html" class="single_cartdrop">
                                 <span class="remove_cart"><i class="las la-times"></i></span>
                                 <div class="cartdrop_img">
-                                    <img loading="lazy" src="assets/images/shoes-5.png" alt="product">
+                                    <img loading="lazy"  src="assets/images/headphone-2.png" alt="product">
                                 </div>
                                 <div class="cartdrop_cont">
                                     <h5 class="text_lg mb-0 default_link">
@@ -472,26 +489,14 @@
                                     </h5>
                                     <p class="mb-0 text_xs text_p">x1 <span class="ms-2">$450</span></p>
                                 </div>
-                            </a>
-                            <a href="product-view.html" class="single_cartdrop">
-                                <span class="remove_cart"><i class="las la-times"></i></span>
-                                <div class="cartdrop_img">
-                                    <img loading="lazy" src="assets/images/headphone-2.png" alt="product">
-                                </div>
-                                <div class="cartdrop_cont">
-                                    <h5 class="text_lg mb-0 default_link">
-                                        Men casual shoes
-                                    </h5>
-                                    <p class="mb-0 text_xs text_p">x1 <span class="ms-2">$450</span></p>
-                                </div>
-                            </a>
+                            </a> -->
                         </div>
                         <div class="total_cartdrop">
                             <h4 class="text_lg text-uppercase mb-0">Sub Total:</h4>
-                            <h4 class="text_lg mb-0 ms-2">$980.00</h4>
+                            <h4 class="text_lg mb-0 ms-2">{{ TotalPrice }} PEN</h4>
                         </div>
                         <div class="cartdrop_footer d-flex mt-3">
-                            <a href="shopping-cart.html" class="default_btn w-50 text_xs px-1">View Cart</a>
+                            <a routerLink="/carrito-de-compra" class="default_btn w-50 text_xs px-1">Ver Carrito</a>
                             <a href="checkout.html" class="default_btn second ms-3 w-50 text_xs px-1">Checkout</a>
                         </div>
                     </div>
@@ -508,7 +513,7 @@
                             <p *ngIf="user">Welcome {{ user.name }} to RAFCART Shop</p>
                             <p *ngIf="!user">Welcome to RAFCART Shop</p>
                             <div class="account_btn d-flex justify-content-between">
-                                <a routerLink="/auth/register" class="default_btn">Join</a>
+                                <a routerLink="/auth/registro" class="default_btn">Join</a>
                                 <a routerLink="/auth/login" class="default_btn second">Sing in</a>
                             </div>
                         </div>
@@ -529,8 +534,7 @@
                                 <i class="icon-cart"></i>
                                 My Cart
                             </a>
-                            <a href="#" onclick="return false;" (click)="logout()">
-                                <!-- OnClick en false Evita que recargue la página y el Click solo para que se ejecute esa función -->
+                            <a href="#" onclick="return false;" *ngIf="user" (click)="logout()">
                                 <i class="las la-power-off"></i>
                                 Log out
                             </a>

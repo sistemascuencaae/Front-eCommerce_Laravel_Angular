@@ -1,0 +1,127 @@
+<!-- breadcrumbs -->
+<div class="container">
+    <div class="breadcrumbs">
+        <a href="/"><i class="las la-home"></i></a>
+        <a href="#" class="active">CARRITO DE COMPRA</a>
+    </div>
+</div>
+
+<!-- shopping cart -->
+<div class="cart_area section_padding_b">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <h4 class="shop_cart_title sopcart_ttl d-none d-lg-flex">
+                    <span>Producto</span>
+                    <span>Cantidad</span>
+                    <span>Total</span>
+                </h4>
+                <div class="shop_cart_wrap">
+                    <ng-container *ngFor="let cart of listCarts">
+                        <div class="single_shop_cart d-flex align-items-center flex-wrap">
+                            <div class="cart_img mb-4 mb-md-0">
+                                <img loading="lazy" [src]="cart.product.imagen" alt="product">
+                            </div>
+                            <div class="cart_cont">
+                                <a [href]="'/producto/'+cart.product.slug">
+                                    <h5>{{ cart.product.tittle }}</h5>
+                                </a>
+                                <p class="price">
+                                    <small *ngIf="cart.code_cupon" class="text-dark">CUPON: {{ cart.code_cupon }}
+                                    </small>
+                                    <span class="prev_price mx-1" *ngIf="cart.code_cupon">{{ cart.precio_unitario }} PEN
+                                    </span>
+                                    <span class="disc_tag ms-3" *ngIf="cart.code_cupon && cart.type_discount == 1">-{{
+                                        cart.discount }}%
+                                    </span>
+                                    <span class="disc_tag ms-3" *ngIf="cart.code_cupon && cart.type_discount == 2">-{{
+                                        cart.discount }}PEN
+                                    </span>
+                                    <br>
+                                    {{ cart.subtotal }} PEN
+                                </p>
+                                <p class="size mb-0" *ngIf="cart.product_size">Tamaño: {{ cart.product_size.name }}/
+                                    Color : {{ cart.product_color_size.name }}</p>
+                            </div>
+                            <div class="cart_qnty d-flex align-items-center ms-md-auto">
+                                <div class="cart_qnty_btn" (click)="reduceQ(cart)">
+                                    <i class="las la-minus"></i>
+                                </div>
+                                <div class="cart_count">{{ cart.cantidad }}</div>
+                                <div class="cart_qnty_btn" (click)="addQ(cart)">
+                                    <i class="las la-plus"></i>
+                                </div>
+                            </div>
+                            <div class="cart_price ms-auto">
+                                <p>{{ cart.total }} PEN</p>
+                            </div>
+                            <div class="cart_remove ms-auto" (click)="deleteItem(cart)">
+                                <i class="icon-trash"></i>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <!-- <div class="single_shop_cart d-flex align-items-center flex-wrap">
+                        <div class="cart_img mb-4 mb-md-0">
+                            <img loading="lazy"  src="assets/images/iphone.png" alt="product">
+                        </div>
+                        <div class="cart_cont">
+                            <a href="product-view.html">
+                                <h5>iPhone 11 Pro Max XR</h5>
+                            </a>
+                            <p class="price">$499.00</p>
+                            <p class="size mb-0">Size: M</p>
+                        </div>
+                        <div class="cart_qnty d-flex align-items-center ms-md-auto">
+                            <div class="cart_qnty_btn">
+                                <i class="las la-minus"></i>
+                            </div>
+                            <div class="cart_count">1</div>
+                            <div class="cart_qnty_btn">
+                                <i class="las la-plus"></i>
+                            </div>
+                        </div>
+                        <div class="cart_price ms-auto">
+                            <p>$499.00</p>
+                        </div>
+                        <div class="cart_remove ms-auto">
+                             <i class="icon-trash"></i>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-lg-3 mt-4 mt-lg-0">
+                <div class="cart_summary">
+                    <h4>RESUMEN ORDEN</h4>
+                    <div class="cartsum_text d-flex justify-content-between">
+                        <p class="text-semibold">Subtotal</p>
+                        <p class="text-semibold">{{ TotalPrice }} PEN</p>
+                    </div>
+                    <div class="cartsum_text d-flex justify-content-between">
+                        <p>Delivery</p>
+                        <p>Free</p>
+                    </div>
+                    <div class="cartsum_text d-flex justify-content-between">
+                        <p>Tax</p>
+                        <p>Free</p>
+                    </div>
+                    <div class="cart_sum_total d-flex justify-content-between">
+                        <p>Total</p>
+                        <p>{{ TotalPrice }} PEN</p>
+                    </div>
+                    <div class="cart_sum_total d-flex justify-content-between">
+                        <p>Total USD</p>
+                        <p>{{ (TotalPrice/ConversationDolar).toFixed(2) }} USD</p>
+                    </div>
+                    <div class="cart_sum_coupon">
+                        <input type="text" placeholder="Aplicar cupones" [(ngModel)]="cupones">
+                        <button (click)="applyCupon()">apply</button>
+                    </div>
+                    <div class="cart_sum_pros">
+                        <button>Proccees to checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

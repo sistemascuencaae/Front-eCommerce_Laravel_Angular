@@ -12,12 +12,13 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/',
-    pathMatch: 'full'
+    loadChildren: () => import("./modules/ecommerce-auth/ecommerce-auth.module").then(m => m.EcommerceAuthModule),
   },
   {
-    path: '**',
-    redirectTo: 'error/404'
+    path: '', redirectTo: '/', pathMatch: 'full'
+  },
+  {
+    path: '**', redirectTo: 'error/404'
   }
 ];
 
