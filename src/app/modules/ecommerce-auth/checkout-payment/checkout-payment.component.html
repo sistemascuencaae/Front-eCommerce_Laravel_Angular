@@ -1,0 +1,264 @@
+<!-- breadcrumbs -->
+<div class="container">
+    <div class="breadcrumbs">
+        <a href="index-1.html"><i class="las la-home"></i></a>
+        <a href="#">Shop</a>
+        <a href="#" class="active">Checkout</a>
+    </div>
+</div>
+
+<!-- payment methods -->
+<div class="cart_area section_padding_b">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-7 col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="shadow_sm p-2">
+                                    <div class="prof_info_title mb-0">
+                                        <h4>NUEVA DIRECCIÓN: </h4>
+                                        <a href="#" onclick="return false;" (click)="resetAddress()"
+                                            style="font-size: x-large;">+</a>
+                                    </div>
+                                    <div class="prfo_info_cont">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <ng-container *ngFor="let addrr of listAdrees;let i = index">
+                                <div class="col-4">
+                                    <div class="single_prof_info shadow_sm">
+                                        <div class="prof_info_title">
+                                            <h4>Dirección: ({{ i + 1 }})</h4>
+                                            <a href="#" onclick="return false;"
+                                                (click)="selectAddress(addrr)">Selec.</a>
+                                        </div>
+                                        <div class="prfo_info_cont">
+                                            <p class="text-semibold">{{ addrr.full_name + ' '+ addrr.full_surname}}</p>
+                                            <p>{{ addrr.direccion }}</p>
+                                            <p>{{ addrr.county_region }}</p>
+                                            <p>{{ addrr.phone }}</p>
+                                            <p>{{ addrr.email }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+
+                        </div>
+                    </div>
+                    <div class="col-12 py-2">
+                        <h4 class="shop_cart_title mb-4 px-3 d-fllex align-items-center justify-content-between">
+                            <span>
+                                Ubicación detallada:
+                            </span>
+                            <button class="btn btn-sm btn-danger" (click)="changeStatus()">+</button>
+                        </h4>
+                        <div class="billing_form" *ngIf="status_view">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="single_billing_inp">
+                                        <label for="first_name">Nombres completos: <span>*</span></label>
+                                        <input type="text" id="first_name" [(ngModel)]="full_name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="single_billing_inp">
+                                        <label for="last_name">Apellidos completos: <span>*</span></label>
+                                        <input type="text" id="last_name" [(ngModel)]="full_surname">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single_billing_inp">
+                                        <label for="company_name">Nombre de empresa: (Opcional)</label>
+                                        <input type="text" id="company_name" [(ngModel)]="company_name">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single_billing_inp">
+                                        <label for="county_region">Pais/Region: <span>*</span></label>
+                                        <input type="text" id="county_region" [(ngModel)]="county_region">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single_billing_inp">
+                                        <label for="street_addr">Dirección: <span>*</span></label>
+                                        <input type="text" id="street_addr" [(ngModel)]="direccion">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single_billing_inp">
+                                        <label for="town_city">Ciudad: <span>*</span></label>
+                                        <input type="text" id="town_city" [(ngModel)]="city">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single_billing_inp">
+                                        <label for="zip_code">Codigo postal: <span>*</span></label>
+                                        <input type="text" id="zip_code" [(ngModel)]="zip_code">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single_billing_inp">
+                                        <label for="phone_number">Numero telefonico: <span>*</span></label>
+                                        <input type="text" id="phone_number" [(ngModel)]="phone">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single_billing_inp">
+                                        <label for="email_addr">Correo electronico: <span>*</span></label>
+                                        <input type="text" id="email_addr" [(ngModel)]="email">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="btn btn-danger" (click)="save()" *ngIf="!address_selected"> AGREGAR
+                                        DIRECCIÓN </button>
+                                    <button class="btn btn-danger" (click)="save()" *ngIf="address_selected"> EDITAR
+                                        DIRECCIÓN </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 mb-4">
+                <h4 class="shop_cart_title ps-4">Selecciona metodo de pago: </h4>
+
+                <div class="payment_method_options">
+                    <div class="single_payment_method active" data-target=".credit_card">
+                        <div class="sp_img">
+                            <img loading="lazy" src="assets/images/credit-card.png" alt="credit card">
+                        </div>
+                        <p class="sp_text">Tarjeta de Credito</p>
+                    </div>
+                    <div class="single_payment_method" data-target=".pay_pal">
+                        <div class="sp_img">
+                            <img loading="lazy" src="assets/images/paypal.png" alt="paypal">
+                        </div>
+                        <p class="sp_text">Paypal</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-10">
+
+                        <div class="payment_methods credit_card active">
+                            <div class="payment_method_title">
+                                <h4>Tarjeta</h4>
+                                <div class="payment_method_img">
+                                    <div class="d-flex credit_crd">
+                                        <img loading="lazy" src="assets/images/payment-visa.png" alt="Visa card">
+                                        <img loading="lazy" src="assets/images/payment-master.png" alt="Master card">
+                                        <img loading="lazy" src="assets/images/payment-express.png"
+                                            alt="American express">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="single_billing_inp">
+                                        <label for="company_name">Numero de Tarjeta: <span>*</span></label>
+                                        <input type="text" id="company_name">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single_billing_inp">
+                                        <label for="county_region">Nombre de Tarjeta <span>*</span></label>
+                                        <input type="text" id="county_region">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="single_billing_inp">
+                                        <label for="first_name">Fecha de expiración: <span>*</span></label>
+                                        <input type="text" class="" id="first_name" placeholder="MM/YY">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="single_billing_inp">
+                                        <label for="last_name">CVV <span>*</span></label>
+                                        <input type="text" class="" id="last_name">
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button class="default_btn rounded">Pagar ahora</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment_methods pay_pal">
+                            <div class="payment_method_title">
+                                <h4>Paypal</h4>
+                                <div class="payment_method_img">
+                                    <div class="d-flex">
+                                        <img loading="lazy" src="assets/images/paypal.png" alt="paypal">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <p>Payment using your paypal</p>
+                                <button class="default_btn rounded">Pay Now</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h4 class="shop_cart_title ps-4">Tu orden</h4>
+                <div class="checkout_order">
+                    <h4>CARRITO DE COMPRA</h4>
+                    <ng-container *ngFor="let cart of listCarts">
+                        <div class="single_check_order">
+                            <div class="checkorder_cont">
+                                <h5>{{ cart.product.tittle }}</h5>
+                                <p *ngIf="cart.product_size">Tamaño: {{ cart.product_size.name }}/ Color : {{
+                                    cart.product_color_size.name }}</p>
+                            </div>
+                            <p class="checkorder_qnty">x{{ cart.cantidad }}</p>
+                            <p class="checkorder_price">{{ cart.total }} PEN</p>
+                        </div>
+                    </ng-container>
+
+                    <!-- <div class="single_check_order">
+                        <div class="checkorder_cont">
+                            <h5>Beigh Knitted Shoes</h5>
+                            <p>Color: Red</p>
+                        </div>
+                        <p class="checkorder_qnty">x2</p>
+                        <p class="checkorder_price">$84.00</p>
+                    </div>
+                    <div class="single_check_order">
+                        <div class="checkorder_cont">
+                            <h5>Beigh Knitted Shoes</h5>
+                            <p>Size: M</p>
+                        </div>
+                        <p class="checkorder_qnty">x1</p>
+                        <p class="checkorder_price">$84.00</p>
+                    </div> -->
+                    <div class="single_check_order subs">
+                        <div class="checkorder_cont subtotal-h">
+                            <h5>TOTAL</h5>
+                        </div>
+                        <p class="checkorder_price">{{ TotalPrice }} PEN</p>
+                    </div>
+                    <div class="single_check_order subs">
+                        <div class="checkorder_cont subtotal-h">
+                            <h5>Shipping</h5>
+                        </div>
+                        <p class="checkorder_price">Free</p>
+                    </div>
+                    <div class="single_check_order total">
+                        <div class="checkorder_cont">
+                            <h5>TOTAL: USD</h5>
+                        </div>
+                        <p class="checkorder_price">{{ (TotalPrice/ConversationDolar).toFixed(2) }} USD</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

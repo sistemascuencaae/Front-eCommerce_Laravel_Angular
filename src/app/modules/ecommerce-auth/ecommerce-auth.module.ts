@@ -8,12 +8,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CheckoutPaymentComponent } from './checkout-payment/checkout-payment.component';
 
 
 @NgModule({
   declarations: [
     EcommerceAuthComponent,
-    ShoppingCartsComponent
+    ShoppingCartsComponent,
+    CheckoutPaymentComponent
   ],
   imports: [
     CommonModule,

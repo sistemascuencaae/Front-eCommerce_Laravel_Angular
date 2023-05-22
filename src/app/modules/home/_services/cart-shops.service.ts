@@ -16,56 +16,56 @@ export class CartShopsService {
     public http: HttpClient,
   ) { }
 
-  changeCart(DATACART: any) {
+  changeCart(DATACART:any){
     let listCart = this.cart.getValue();
     let objIndex = listCart.findIndex(item => item.id == DATACART.id);
-    if (objIndex != -1) {
+    if(objIndex != -1){
       listCart[objIndex] = DATACART;
-    } else {
+    }else{
       listCart.unshift(DATACART);
     }
     this.cart.next(listCart);
   }
 
-  resetCart() {
-    let listCart: any = [];
+  resetCart(){
+    let listCart:any = [];
     this.cart.next(listCart);
   }
-  removeItemCart(DATACART: any) {
+  removeItemCart(DATACART:any){
     let listCart = this.cart.getValue();
     let objIndex = listCart.findIndex(item => item.id == DATACART.id);
-    if (objIndex != -1) {
-      listCart.splice(objIndex, 1);
+    if(objIndex != -1){
+      listCart.splice(objIndex,1);
     }
     this.cart.next(listCart);
   }
-  listCartShop() {
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this._authServices.token });
+  listCartShop(){
+    let headers = new HttpHeaders({'Authorization': 'Bearer ' + this._authServices.token});
     let URL = URL_SERVICIOS + "/ecommerce/cart/add";
-    return this.http.get(URL, { headers: headers });
+    return this.http.get(URL,{headers: headers});
   }
-  applyCupon(cupon: any) {
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this._authServices.token });
-    let URL = URL_SERVICIOS + "/ecommerce/cart/applycupon/" + cupon;
-    return this.http.get(URL, { headers: headers });
+  applyCupon(cupon:any){
+    let headers = new HttpHeaders({'Authorization': 'Bearer ' + this._authServices.token});
+    let URL = URL_SERVICIOS + "/ecommerce/cart/applycupon/"+cupon;
+    return this.http.get(URL,{headers: headers});
   }
-  addCartShop(data: any) {
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this._authServices.token });
+  addCartShop(data:any){
+    let headers = new HttpHeaders({'Authorization': 'Bearer ' + this._authServices.token});
     let URL = URL_SERVICIOS + "/ecommerce/cart/add";
-    return this.http.post(URL, data, { headers: headers });
+    return this.http.post(URL,data,{headers: headers});
   }
-  updateCartShop(cart_id: any, data: any) {
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this._authServices.token });
-    let URL = URL_SERVICIOS + "/ecommerce/cart/add/" + cart_id;
-    return this.http.put(URL, data, { headers: headers });
+  updateCartShop(cart_id:any,data:any){
+    let headers = new HttpHeaders({'Authorization': 'Bearer ' + this._authServices.token});
+    let URL = URL_SERVICIOS + "/ecommerce/cart/add/"+cart_id;
+    return this.http.put(URL,data,{headers: headers});
   }
-  deleteCartShop(cart_id: any) {
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this._authServices.token });
-    let URL = URL_SERVICIOS + "/ecommerce/cart/add/" + cart_id;
-    return this.http.delete(URL, { headers: headers });
+  deleteCartShop(cart_id:any){
+    let headers = new HttpHeaders({'Authorization': 'Bearer ' + this._authServices.token});
+    let URL = URL_SERVICIOS + "/ecommerce/cart/add/"+cart_id;
+    return this.http.delete(URL,{headers: headers});
   }
 
-  ToDolar() {
+  ToDolar(){
     return this.http.get("https://deperu.com/api/rest/cotizaciondolar.json");
   }
 }
