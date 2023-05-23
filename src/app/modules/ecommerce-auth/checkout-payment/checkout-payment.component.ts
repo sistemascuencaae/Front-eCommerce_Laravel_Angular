@@ -29,6 +29,7 @@ export class CheckoutPaymentComponent {
 
   listCarts: any = [];
   TotalPrice: any = 0;
+
   ConversationDolar: any = 3.8;
 
   listAdrees: any = [];
@@ -39,6 +40,7 @@ export class CheckoutPaymentComponent {
   cvv: any = null;
   date_expiration: any = null;
   user: any = null;
+
   constructor(
     public _cartService: CartShopsService,
     public _saleService: SalesService,
@@ -47,17 +49,17 @@ export class CheckoutPaymentComponent {
 
   ngOnInit(): void {
     this._cartService.ToDolar().subscribe((resp: any) => {
-      console.log(resp);
+      // console.log(resp);
       this.ConversationDolar = resp.Cotizacion[0].Venta;
     })
     this._cartService.currentDataCart$.subscribe((resp: any) => {
-      console.log(resp);
+      // console.log(resp);
       this.listCarts = resp;
-      this.TotalPrice = this.listCarts.reduce((sum: any, item: any) => sum + item.total, 0);
+      this.TotalPrice = this.listCarts.reduce((sum: any, item: any) => (sum + item.total), 0);
     })
     this.user = this._cartService._authServices.user;
     this._saleService.listAddressUser().subscribe((resp: any) => {
-      console.log(resp);
+      // console.log(resp);
       this.listAdrees = resp.address;
       this.status_view = this.listAdrees.length == 0 ? true : false;
     })
@@ -65,6 +67,137 @@ export class CheckoutPaymentComponent {
     this.paypal();
 
   }
+
+  // paypal() {
+  //   paypal.Buttons({
+  //     // optional styling for buttons
+  //     // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
+  //     style: {
+  //       color: "gold",
+  //       shape: "rect",
+  //       layout: "vertical"
+  //     },
+
+  //     // set up the transaction
+  //     createOrder: (data: any, actions: any) => {
+  //       // pass in any options from the v2 orders create call:
+  //       // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
+
+  //       const createOrderPayload = {
+  //         purchase_units: [
+  //           {
+  //             amount: {
+  //               description: "COMPRAR POR EL ECOMMERCE",
+  //               // value: (this.TotalPrice / this.ConversationDolar).toFixed(2)
+  //               value: "98.22"
+  //             }
+  //           }
+  //         ]
+  //       };
+
+  //       return actions.order.create(createOrderPayload);
+  //     },
+
+  //     // finalize the transaction
+  //     onApprove: async (data: any, actions: any) => {
+  //       const captureOrderHandler = (details: any) => {
+  //         const payerName = details.payer.name.given_name;
+  //         console.log('Transaction completed');
+  //       };
+
+  //       return actions.order.capture().then(captureOrderHandler);
+  //     },
+
+  //     // handle unrecoverable errors
+  //     onError: (err: any) => {
+  //       console.error('An error prevented the buyer from checking out with PayPal');
+  //     }
+  //   }).render(this.paypalElement?.nativeElement);
+  // }
+
+  // paypal() {
+  //   paypal.Buttons({
+  //     // optional styling for buttons
+  //     // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
+  //     style: {
+  //       color: "gold",
+  //       shape: "rect",
+  //       layout: "vertical"
+  //     },
+
+  //     // set up the transaction
+  //     createOrder: (data: any, actions: any) => {
+  //       // pass in any options from the v2 orders create call:
+  //       // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
+
+  //       if (this.TotalPrice == 0) {
+  //         alert("EL TOTAL DE LA VENTA DEBE SER MAYOR A 0");
+  //         return false;
+  //       }
+  //       if (this.listCarts.length == 0) {
+  //         alert("EL CARRITO DE COMPRAS ESTA VACIO");
+  //         return false;
+  //       }
+
+  //       if (!this.address_selected) {
+  //         alert("NECESITAS SELECCIONAR UNA DIRECCIÓN");
+  //         return false;
+  //       }
+
+  //       const createOrderPayload = {
+  //         purchase_units: [
+  //           {
+  //             amount: {
+  //               value: (this.TotalPrice / this.ConversationDolar).toFixed(2)
+  //             }
+  //           }
+  //         ]
+  //       };
+
+  //       return actions.order.create(createOrderPayload);
+  //     },
+
+  //     // finalize the transaction
+  //     onApprove: async (data: any, actions: any) => {
+  //       // const captureOrderHandler = (details: any) => {
+  //       //   const payerName = details.payer.name.given_name;
+  //       //   console.log('Transaction completed');
+  //       // };
+  //       let Order = await actions.order.capture();
+  //       let dataSale = {
+  //         sale: {
+  //           user_id: this.user.id,
+  //           method_payment: 'PAYPAL',
+  //           currency_total: 'PEN',
+  //           currency_payment: 'USD',
+  //           total: (this.TotalPrice / this.ConversationDolar).toFixed(2),
+  //           price_dolar: this.ConversationDolar,
+  //           n_transaccion: Order.purchase_units[0].payments.captures[0].id,
+  //         },
+  //         sale_address: {
+  //           full_name: this.address_selected.full_name,
+  //           full_surname: this.address_selected.full_surname,
+  //           company_name: this.address_selected.company_name,
+  //           county_region: this.address_selected.county_region,
+  //           direccion: this.address_selected.direccion,
+  //           city: this.address_selected.city,
+  //           zip_code: this.address_selected.zip_code,
+  //           phone: this.address_selected.phone,
+  //           email: this.address_selected.email,
+  //         },
+  //       }
+  //       this._saleService.storeSale(dataSale).subscribe((resp: any) => {
+  //         console.log(resp);
+  //       })
+  //       // return actions.order.capture().then(captureOrderHandler);
+  //     },
+
+  //     // handle unrecoverable errors
+  //     onError: (err: any) => {
+  //       console.error('An error prevented the buyer from checking out with PayPal');
+  //     }
+  //   }).render(this.paypalElement?.nativeElement);
+  // }
 
   paypal() {
     paypal.Buttons({
@@ -81,13 +214,24 @@ export class CheckoutPaymentComponent {
         // pass in any options from the v2 orders create call:
         // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
 
+        if (this.TotalPrice == 0) {
+          alert("EL TOTAL DE LA VENTA DEBE SER MAYOR A 0");
+          return false;
+        }
+        if (this.listCarts.length == 0) {
+          alert("EL CARRITO DE COMPRAS ESTA VACIO");
+          return false;
+        }
+        if (!this.address_selected) {
+          alert("NECESITAS SELECCIONAR UNA DIRECCIÓN");
+          return false;
+        }
+
         const createOrderPayload = {
           purchase_units: [
             {
               amount: {
-                description: "COMPRAR POR EL ECOMMERCE",
-                // value: (this.TotalPrice / this.ConversationDolar).toFixed(2)
-                value: "98.22"
+                value: (this.TotalPrice / this.ConversationDolar).toFixed(2)
               }
             }
           ]
@@ -98,12 +242,41 @@ export class CheckoutPaymentComponent {
 
       // finalize the transaction
       onApprove: async (data: any, actions: any) => {
-        const captureOrderHandler = (details: any) => {
-          const payerName = details.payer.name.given_name;
-          console.log('Transaction completed');
-        };
+        // const captureOrderHandler = (details:any) => {
+        //     const payerName = details.payer.name.given_name;
+        //     console.log('Transaction completed');
+        // };
+        let Order = await actions.order.capture();
+        console.log(Order);
+        let dataSale = {
+          sale: {
+            user_id: this.user.id,
+            method_payment: 'PAYPAL',
+            currency_total: 'PEN',
+            currency_payment: 'USD',
+            total: (this.TotalPrice / this.ConversationDolar).toFixed(2),
+            price_dolar: this.ConversationDolar,
+            n_transaccion: Order.purchase_units[0].payments.captures[0].id,
+          },
+          sale_address: {
+            full_name: this.address_selected.full_name,
+            full_surname: this.address_selected.full_surname,
+            company_name: this.address_selected.company_name,
+            county_region: this.address_selected.county_region,
+            direccion: this.address_selected.direccion,
+            city: this.address_selected.city,
+            zip_code: this.address_selected.zip_code,
+            phone: this.address_selected.phone,
+            email: this.address_selected.email,
+          },
+        }
+        this._saleService.storeSale(dataSale).subscribe((resp: any) => {
+          console.log(resp);
+          // alertSuccess(resp.message_text);
+          // this.router.navigateByUrl("/perfil-del-cliente?selected_menu=4");
+        })
 
-        return actions.order.capture().then(captureOrderHandler);
+        // return actions.order.capture().then(captureOrderHandler);
       },
 
       // handle unrecoverable errors
@@ -124,6 +297,7 @@ export class CheckoutPaymentComponent {
     this.phone = addrr.phone;
     this.email = addrr.email;
   }
+
   resetAddress() {
     this.address_selected = null;
     this.full_name = null;
@@ -136,9 +310,11 @@ export class CheckoutPaymentComponent {
     this.phone = null;
     this.email = null;
   }
+
   changeStatus() {
     this.status_view = !this.status_view;
   }
+
   save() {
     if (!this.full_name || !this.full_surname) {
       alert("NECESITAS INGRESAR EL NOMBRE Y APELLIDO DEL QUE RECIBE EL PAQUE O ENTREGA");
@@ -242,13 +418,17 @@ export class CheckoutPaymentComponent {
       cvv: this.cvv,
       expiration_month: expiration_month,
       expiration_year: expiration_year,
+      // email: this.user.email,
       email: "stackdevelopers29@gmail.com",
     };
+    console.log("data CULQI");
+    console.log(data);
     // 1000
     this._culqiService.GETTOKENCULQI(data).subscribe((resp: any) => {
       console.log(resp);
       let dataT = {
         source_id: resp.id,
+        // email: this.user.email,
         email: "stackdevelopers29@gmail.com",
         currency_code: 'PEN',
         amount: parseInt(this.TotalPrice.toString() + "00"),
