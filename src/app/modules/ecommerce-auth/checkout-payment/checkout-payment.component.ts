@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CartShopsService } from '../../home/_services/cart-shops.service';
 import { SalesService } from '../_services/sales.service';
 import { CulqiService } from '../_services/culqi.service';
+import { Router } from '@angular/router';
 
 declare var paypal: any;
 declare function alertDanger([]): any;
@@ -45,6 +46,7 @@ export class CheckoutPaymentComponent {
     public _cartService: CartShopsService,
     public _saleService: SalesService,
     public _culqiService: CulqiService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -247,6 +249,7 @@ export class CheckoutPaymentComponent {
         //     console.log('Transaction completed');
         // };
         let Order = await actions.order.capture();
+        console.log('Order');
         console.log(Order);
         let dataSale = {
           sale: {
@@ -270,18 +273,19 @@ export class CheckoutPaymentComponent {
             email: this.address_selected.email,
           },
         }
+
         this._saleService.storeSale(dataSale).subscribe((resp: any) => {
           console.log(resp);
           // alertSuccess(resp.message_text);
-          // this.router.navigateByUrl("/perfil-del-cliente?selected_menu=4");
         })
-
+        location.reload();
         // return actions.order.capture().then(captureOrderHandler);
       },
 
       // handle unrecoverable errors
       onError: (err: any) => {
-        console.error('An error prevented the buyer from checking out with PayPal');
+        // console.error('An error prevented the buyer from checking out with PayPal');
+        console.error('Un error a la hora de checking con PayPal');
       }
     }).render(this.paypalElement?.nativeElement);
   }
