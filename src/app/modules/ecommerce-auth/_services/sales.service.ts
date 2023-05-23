@@ -11,6 +11,13 @@ export class SalesService {
     public _authServices: AuthService,
     public http: HttpClient,
   ) { }
+  // PROCESO DE COMPRA
+
+  storeSale(data: any) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this._authServices.token });
+    let URL = URL_SERVICIOS + "/ecommerce/checkout/sale";
+    return this.http.post(URL, data, { headers: headers });
+  }
 
   // CHECKOUT - DIRECCION DEL CLIENTE
   listAddressUser() {

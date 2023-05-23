@@ -9,6 +9,10 @@ declare function hero_slider_active(): any;
   styleUrls: ['./home-initial.component.scss']
 })
 export class HomeInitialComponent {
+  // C:\xampp\htdocs\Back-eCommerce_Laravel_Angular\public
+  // localhost:4200/storage/app/sliders/FPq7G18OnBwq1H5cqzUPhNTI2cMGtX3jtdNxihvn.png
+  // URL_BACKEND: any = "http://192.168.1.105:80/Back-eCommerce_Laravel_Angular/public";
+  URL_BACKEND: any = "http://192.168.1.105:80/Back-eCommerce_Laravel_Angular/public";
 
   sliders: any = [];
   group_categories_product: any = [];

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CartShopsService } from '../../home/_services/cart-shops.service';
 import { SalesService } from '../_services/sales.service';
+import { CulqiService } from '../_services/culqi.service';
 
+declare var paypal: any;
 declare function alertDanger([]): any;
 declare function alertSuccess([]): any;
 @Component({
@@ -10,6 +12,11 @@ declare function alertSuccess([]): any;
   styleUrls: ['./checkout-payment.component.scss']
 })
 export class CheckoutPaymentComponent {
+  amount = 6845;
+
+  @ViewChild('paypal', { static: true }) paypalElement?: ElementRef;
+
+
   full_name: any = null;
   full_surname: any = null;
   company_name: any = null;
@@ -27,9 +34,15 @@ export class CheckoutPaymentComponent {
   listAdrees: any = [];
   address_selected: any = null;
   status_view: Boolean = false;
+
+  card_number: any = null;
+  cvv: any = null;
+  date_expiration: any = null;
+  user: any = null;
   constructor(
     public _cartService: CartShopsService,
     public _saleService: SalesService,
+    public _culqiService: CulqiService,
   ) { }
 
   ngOnInit(): void {
@@ -42,11 +55,62 @@ export class CheckoutPaymentComponent {
       this.listCarts = resp;
       this.TotalPrice = this.listCarts.reduce((sum: any, item: any) => sum + item.total, 0);
     })
+    this.user = this._cartService._authServices.user;
     this._saleService.listAddressUser().subscribe((resp: any) => {
       console.log(resp);
       this.listAdrees = resp.address;
       this.status_view = this.listAdrees.length == 0 ? true : false;
     })
+
+    this.paypal();
+
+  }
+
+  paypal() {
+    paypal.Buttons({
+      // optional styling for buttons
+      // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
+      style: {
+        color: "gold",
+        shape: "rect",
+        layout: "vertical"
+      },
+
+      // set up the transaction
+      createOrder: (data: any, actions: any) => {
+        // pass in any options from the v2 orders create call:
+        // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
+
+        const createOrderPayload = {
+          purchase_units: [
+            {
+              amount: {
+                description: "COMPRAR POR EL ECOMMERCE",
+                // value: (this.TotalPrice / this.ConversationDolar).toFixed(2)
+                value: "98.22"
+              }
+            }
+          ]
+        };
+
+        return actions.order.create(createOrderPayload);
+      },
+
+      // finalize the transaction
+      onApprove: async (data: any, actions: any) => {
+        const captureOrderHandler = (details: any) => {
+          const payerName = details.payer.name.given_name;
+          console.log('Transaction completed');
+        };
+
+        return actions.order.capture().then(captureOrderHandler);
+      },
+
+      // handle unrecoverable errors
+      onError: (err: any) => {
+        console.error('An error prevented the buyer from checking out with PayPal');
+      }
+    }).render(this.paypalElement?.nativeElement);
   }
   selectAddress(addrr: any) {
     this.address_selected = addrr;
@@ -144,4 +208,80 @@ export class CheckoutPaymentComponent {
     })
   }
 
+  PROCESS_PAYMENT() {
+    if (this.TotalPrice == 0) {
+      alert("EL TOTAL DE LA VENTA DEBE SER MAYOR A 0");
+      return;
+    }
+    if (this.listCarts.length == 0) {
+      alert("EL CARRITO DE COMPRAS ESTA VACIO");
+      return;
+    }
+    if (!this.card_number) {
+      alert("NECESITAS COLOCAR EL NUMERO DE LA TARJETA");
+      return;
+    }
+    if (!this.date_expiration) {
+      alert("NECESITAS COLOCAR LA FECHA DE EXPIRACION DE LA TARJETA");
+      return;
+    }
+    if (!this.cvv) {
+      alert("NECESITAS COLOCAR EL CVV DE LA TARJETA");
+      return;
+    }
+    if (!this.address_selected) {
+      alert("NECESITAS SELECCIONAR UNA DIRECCIÓN");
+      return;
+    }
+    // 25/24
+    let SLIT_DATE = this.date_expiration.split("/");//[25,24]
+    let expiration_month = SLIT_DATE[0];
+    let expiration_year = SLIT_DATE[1];
+    let data = {
+      card_number: this.card_number,
+      cvv: this.cvv,
+      expiration_month: expiration_month,
+      expiration_year: expiration_year,
+      email: "stackdevelopers29@gmail.com",
+    };
+    // 1000
+    this._culqiService.GETTOKENCULQI(data).subscribe((resp: any) => {
+      console.log(resp);
+      let dataT = {
+        source_id: resp.id,
+        email: "stackdevelopers29@gmail.com",
+        currency_code: 'PEN',
+        amount: parseInt(this.TotalPrice.toString() + "00"),
+      }
+      this._culqiService.SENDDATATOCULQI(dataT).subscribe((respT: any) => {
+        console.log(respT);
+        //respT.id
+        let dataSale = {
+          sale: {
+            user_id: this.user.id,
+            method_payment: 'CULQI',
+            currency_total: 'PEN',
+            currency_payment: 'PEN',
+            total: this.TotalPrice,
+            price_dolar: 0,
+            n_transaccion: respT.id,
+          },
+          sale_address: {
+            full_name: this.address_selected.full_name,
+            full_surname: this.address_selected.full_surname,
+            company_name: this.address_selected.company_name,
+            county_region: this.address_selected.county_region,
+            direccion: this.address_selected.direccion,
+            city: this.address_selected.city,
+            zip_code: this.address_selected.zip_code,
+            phone: this.address_selected.phone,
+            email: this.address_selected.email,
+          },
+        }
+        this._saleService.storeSale(dataSale).subscribe((resp: any) => {
+          console.log(resp);
+        })
+      })
+    })
+  }
 }

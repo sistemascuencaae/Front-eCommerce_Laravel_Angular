@@ -162,29 +162,30 @@
                                 <div class="col-12">
                                     <div class="single_billing_inp">
                                         <label for="company_name">Numero de Tarjeta: <span>*</span></label>
-                                        <input type="text" id="company_name">
+                                        <input type="text" id="company_name" [(ngModel)]="card_number">
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <!-- <div class="col-12">
                                     <div class="single_billing_inp">
                                         <label for="county_region">Nombre de Tarjeta <span>*</span></label>
                                         <input type="text" id="county_region">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-lg-6">
                                     <div class="single_billing_inp">
                                         <label for="first_name">Fecha de expiración: <span>*</span></label>
-                                        <input type="text" class="" id="first_name" placeholder="MM/YY">
+                                        <input type="text" class="" id="first_name" placeholder="MM/YY"
+                                            [(ngModel)]="date_expiration">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="single_billing_inp">
                                         <label for="last_name">CVV <span>*</span></label>
-                                        <input type="text" class="" id="last_name">
+                                        <input type="text" class="" id="last_name" [(ngModel)]="cvv">
                                     </div>
                                 </div>
                                 <div class="col-12 mt-4">
-                                    <button class="default_btn rounded">Pagar ahora</button>
+                                    <button class="default_btn rounded" (click)="PROCESS_PAYMENT()">Pagar ahora</button>
                                 </div>
                             </div>
                         </div>
@@ -199,8 +200,7 @@
                                 </div>
                             </div>
                             <div class="text-center mt-4">
-                                <p>Payment using your paypal</p>
-                                <button class="default_btn rounded">Pay Now</button>
+                                <div #paypal></div>
                             </div>
                         </div>
 

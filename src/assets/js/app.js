@@ -1,4 +1,4 @@
-(initPageEcommerce($))(jQuery);
+// (initPageEcommerce($))(jQuery);
 
 function initPageEcommerce($) {
     "use strict";
