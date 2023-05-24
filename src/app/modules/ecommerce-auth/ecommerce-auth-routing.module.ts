@@ -4,6 +4,7 @@ import { EcommerceAuthComponent } from './ecommerce-auth.component';
 import { ShoppingCartsComponent } from './shopping-carts/shopping-carts.component';
 import { authGuard } from '../auth-profile/_services/auth.guard';
 import { CheckoutPaymentComponent } from './checkout-payment/checkout-payment.component';
+import { ProfileClientsHomeComponent } from './profile-client/profile-clients-home/profile-clients-home.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'proceso-de-pago',
         component: CheckoutPaymentComponent,
+      },
+      {
+        path: 'perfil-del-cliente',
+        component: ProfileClientsHomeComponent,
       }
     ]
   }];

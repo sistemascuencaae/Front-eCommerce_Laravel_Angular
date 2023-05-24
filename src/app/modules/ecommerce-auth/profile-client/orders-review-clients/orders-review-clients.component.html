@@ -1,0 +1,116 @@
+<div class="return_ordwrap" *ngIf="!IS_FORM">
+    <!-- product details -->
+    <ng-container *ngFor="let review of listReviews">
+        <div class="order_prodetails d-flex flex-wrap shadow_sm padding_default mt-0">
+            <div class="orderprod_img">
+                <img loading="lazy" [src]="review.product.imagen" alt="product">
+            </div>
+            <div class="single_orderdet pdname">
+                <h5>{{ review.product.tittle }}</h5>
+                <p class="text-semibold">{{ review.total }} {{ review.currency_payment }}</p>
+
+                <div class="rating" *ngIf="review.review">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <div class="rating_star">
+                            <span><i class="la-star"
+                                    [ngClass]="{'las': review.review.rating >= 1,'lar': review.review.rating < 1}"></i></span>
+                            <span><i class="la-star"
+                                    [ngClass]="{'las': review.review.rating >= 2,'lar': review.review.rating < 2}"></i></span>
+                            <span><i class="la-star"
+                                    [ngClass]="{'las': review.review.rating >= 3,'lar': review.review.rating < 3}"></i></span>
+                            <span><i class="la-star"
+                                    [ngClass]="{'las': review.review.rating >= 4,'lar': review.review.rating < 4}"></i></span>
+                            <span><i class="la-star"
+                                    [ngClass]="{'las': review.review.rating >= 5,'lar': review.review.rating < 5}"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="single_orderdet w-xs-33 ms-md-auto ms-0 mt-3 mt-md-0">
+                <h5>Numero Transacción</h5>
+                <p>{{ review.n_transaccion }}</p>
+            </div>
+            <div class="single_orderdet w-xs-33 ms-auto mt-3 mt-md-0">
+                <h5>Fecha</h5>
+                <p>{{ review.created_at }}</p>
+            </div>
+            <div class="orderdet_btn align-self-center ms-auto">
+                <a *ngIf="review.review" href="#" onclick="return false;" (click)="changeView(review,true)"
+                    class="default_btn second rounded text-capitalize small mt-3 mt-md-0">Editar Reseña</a>
+                <a *ngIf="!review.review" href="#" onclick="return false;" (click)="changeView(review,true)"
+                    class="default_btn second rounded text-capitalize small mt-3 mt-md-0">Escribe una reseña </a>
+            </div>
+        </div>
+    </ng-container>
+
+
+    <!-- <div class="order_prodetails d-flex flex-wrap shadow_sm padding_default mt-4">
+        <div class="orderprod_img">
+            <img loading="lazy"  src="assets/images/bag-2.png" alt="product">
+        </div>
+        <div class="single_orderdet pdname">
+            <h5>Herschel Leather Duffle Bag</h5>
+            <p class="text-semibold">$55</p>
+            <div class="rating">
+                <div class="d-flex align-items-center justify-content-start">
+                    <div class="rating_star">
+                        <span><i class="las la-star"></i></span>
+                        <span><i class="las la-star"></i></span>
+                        <span><i class="las la-star"></i></span>
+                        <span><i class="las la-star"></i></span>
+                        <span><i class="las la-star"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single_orderdet w-xs-33 ms-md-auto ms-0 mt-3 mt-md-0">
+            <h5>Order Number</h5>
+            <p>798W4E574</p>
+        </div>
+        <div class="single_orderdet w-xs-33 ms-auto mt-3 mt-md-0">
+            <h5>Purchased</h5>
+            <p>16 Dec 2020</p>
+        </div>
+        <div class="orderdet_btn align-self-center ms-auto">
+            <a href="account-review-details.html" class="default_btn second rounded text-capitalize small mt-3 mt-md-0">Edit Review</a>
+        </div>
+    </div>
+  
+    <div class="order_prodetails d-flex flex-wrap shadow_sm padding_default mt-4">
+        <div class="orderprod_img">
+            <img loading="lazy"  src="assets/images/headphone-3.png" alt="product">
+        </div>
+        <div class="single_orderdet pdname">
+            <h5>Sound Intone I65 Earphone</h5>
+            <p class="text-semibold">$59</p>
+            <div class="rating">
+                <div class="d-flex align-items-center justify-content-start">
+                    <div class="rating_star">
+                        <span><i class="las la-star"></i></span>
+                        <span><i class="las la-star"></i></span>
+                        <span><i class="las la-star"></i></span>
+                        <span><i class="las la-star"></i></span>
+                        <span><i class="las la-star"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single_orderdet w-xs-33 ms-md-auto ms-0 mt-3 mt-md-0">
+            <h5>Order Number</h5>
+            <p>798W4E574</p>
+        </div>
+        <div class="single_orderdet w-xs-33 ms-auto mt-3 mt-md-0">
+            <h5>Purchased</h5>
+            <p>16 Dec 2020</p>
+        </div>
+        <div class="orderdet_btn align-self-center ms-auto">
+            <a href="account-review-details.html" class="default_btn second rounded text-capitalize small mt-3 mt-md-0">Edit
+                Review</a>
+        </div>
+    </div> -->
+
+</div>
+
+<app-orders-review-add-clients *ngIf="IS_FORM" [IS_FORM]="IS_FORM" [sale_detail]="sale_detail"
+    (Review)="addReview($event)" (backView)="backView($event)"></app-orders-review-add-clients>

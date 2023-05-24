@@ -1,0 +1,104 @@
+<!-- breadcrumbs -->
+<div class="container">
+    <div class="breadcrumbs">
+        <a href="index-1.html"><i class="las la-home"></i></a>
+        <a href="account.html">Mi cuenta</a>
+        <a href="#" class="active">Información del perfil</a>
+    </div>
+</div>
+
+<!-- account wrapper -->
+<div class="my_account_wrap section_padding_b">
+    <div class="container">
+        <div class="row">
+            <!--  account sidebar  -->
+            <div class="col-lg-3">
+                <div class="account_sidebar">
+                    <div class="account_profile position-relative shadow_sm">
+                        <div class="acprof_img">
+                            <a href="account.html" *ngIf="user_selected">
+                                <img loading="lazy" [src]="user_selected.avatar" alt="user">
+                            </a>
+                        </div>
+                        <div class="acprof_cont" *ngIf="user">
+                            <p>Hola,</p>
+                            <h4>{{ user.name + ' ' + user.surname }}</h4>
+                        </div>
+                        <div class="profile_hambarg d-lg-none d-block">
+                            <i class="las la-bars"></i>
+                        </div>
+                    </div>
+                    <div class="acprof_wrap shadow_sm">
+                        <div class="acprof_links">
+                            <a>
+                                <h4 class="acprof_link_title">
+                                    <i class="lar la-id-card"></i>
+                                    Manejo de cuenta
+                                </h4>
+                            </a>
+                            <a href="#" onclick="return false;" (click)="selectedMenu(1)"
+                                [ngClass]="{'active': selectorMenu == 1}">Información Perfil</a>
+                            <a href="#" onclick="return false;" (click)="selectedMenu(2)"
+                                [ngClass]="{'active': selectorMenu == 2}">Manejo de direcciones</a>
+                            <a href="#" onclick="return false;" (click)="selectedMenu(3)"
+                                [ngClass]="{'active': selectorMenu == 3}">Cambio de contraseña</a>
+                        </div>
+                        <div class="acprof_links">
+                            <a>
+                                <h4 class="acprof_link_title">
+                                    <i class="las la-gift"></i>
+                                    Mi Historico de orden
+                                </h4>
+                            </a>
+                            <a href="#" onclick="return false;" (click)="selectedMenu(4)"
+                                [ngClass]="{'active': selectorMenu == 4}">Mis Ordenes</a>
+                            <!-- <a href="account-order-cancel.html">My Cancellations</a> -->
+                            <a href="#" onclick="return false;" (click)="selectedMenu(5)"
+                                [ngClass]="{'active': selectorMenu == 5}">Mi Reviews</a>
+                        </div>
+                        <!-- <div class="acprof_links">
+                            <a href="account-payment-methods.html">
+                               <h4 class="acprof_link_title">
+                                    <i class="lar la-credit-card"></i>
+                                    Payments Methods
+                                </h4>
+                            </a>
+                            <a href="account-voucher.html">Voucher</a>
+                        </div> -->
+                        <div class="acprof_links">
+                            <a href="#" onclick="return false;" (click)="selectedMenu(6)"
+                                [ngClass]="{'active': selectorMenu == 6}">
+                                <h4 class="ac_link_title">
+                                    <i class="lar la-heart"></i>
+                                    Mi Wishlist
+                                </h4>
+                            </a>
+                        </div>
+                        <div class="acprof_links border-0">
+                            <a href="login.html">
+                                <h4 class="acprof_link_title">
+                                    <i class="las la-power-off"></i>
+                                    Log Out
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- account content -->
+            <div class="col-lg-9">
+                <app-orders-review-clients *ngIf="selectorMenu == 5"
+                    [listReviews]="listReviews"></app-orders-review-clients>
+                <!-- <app-wishlist-clients *ngIf="selectorMenu == 6"></app-wishlist-clients> -->
+                <app-profile-information *ngIf="selectorMenu == 1"
+                    [user_selected]="user_selected"></app-profile-information>
+                <app-profile-address *ngIf="selectorMenu == 2" [listAdrees]="listAdrees"></app-profile-address>
+                <app-profile-passwords *ngIf="selectorMenu == 3"></app-profile-passwords>
+                <app-orders-clients *ngIf="selectorMenu == 4" [listOrders]="listOrders"></app-orders-clients>
+                <app-orders-review-clients *ngIf="selectorMenu == 5"></app-orders-review-clients>
+                <!-- <app-wishlist-clients *ngIf="selectorMenu == 6"></app-wishlist-clients> -->
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-4">
+                <div class="shadow_sm p-2">
+                    <div class="prof_info_title mb-0">
+                        <h4>NUEVA DIRECCIÓN: </h4>
+                        <a href="#" onclick="return false;" (click)="resetAddress()" style="font-size: x-large;">+</a>
+                    </div>
+                    <div class="prfo_info_cont">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row">
+            <ng-container *ngFor="let addrr of listAdrees;let i = index">
+                <div class="col-4">
+                    <div class="single_prof_info shadow_sm">
+                        <div class="prof_info_title">
+                            <h4>Dirección: ({{ i + 1 }})</h4>
+                            <a href="#" onclick="return false;" (click)="selectAddress(addrr)">Selec.</a>
+                        </div>
+                        <div class="prfo_info_cont">
+                            <p class="text-semibold">{{ addrr.full_name + ' '+ addrr.full_surname}}</p>
+                            <p>{{ addrr.direccion }}</p>
+                            <p>{{ addrr.county_region }}</p>
+                            <p>{{ addrr.phone }}</p>
+                            <p>{{ addrr.email }}</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+    <div class="col-12 py-2">
+        <h4 class="shop_cart_title mb-4 px-3 d-fllex align-items-center justify-content-between">
+            <span>
+                Ubicación detallada:
+            </span>
+            <button class="btn btn-sm btn-danger" (click)="changeStatus()">+</button>
+        </h4>
+        <div class="billing_form" *ngIf="status_view">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="single_billing_inp">
+                        <label for="first_name">Nombres completos: <span>*</span></label>
+                        <input type="text" id="first_name" [(ngModel)]="full_name">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single_billing_inp">
+                        <label for="last_name">Apellidos completos: <span>*</span></label>
+                        <input type="text" id="last_name" [(ngModel)]="full_surname">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="single_billing_inp">
+                        <label for="company_name">Nombre de empresa: (Opcional)</label>
+                        <input type="text" id="company_name" [(ngModel)]="company_name">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="single_billing_inp">
+                        <label for="county_region">Pais/Region: <span>*</span></label>
+                        <input type="text" id="county_region" [(ngModel)]="county_region">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="single_billing_inp">
+                        <label for="street_addr">Dirección: <span>*</span></label>
+                        <input type="text" id="street_addr" [(ngModel)]="direccion">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="single_billing_inp">
+                        <label for="town_city">Ciudad: <span>*</span></label>
+                        <input type="text" id="town_city" [(ngModel)]="city">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="single_billing_inp">
+                        <label for="zip_code">Codigo postal: <span>*</span></label>
+                        <input type="text" id="zip_code" [(ngModel)]="zip_code">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="single_billing_inp">
+                        <label for="phone_number">Numero telefonico: <span>*</span></label>
+                        <input type="text" id="phone_number" [(ngModel)]="phone">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="single_billing_inp">
+                        <label for="email_addr">Correo electronico: <span>*</span></label>
+                        <input type="text" id="email_addr" [(ngModel)]="email">
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-danger" (click)="save()" *ngIf="!address_selected"> AGREGAR DIRECCIÓN
+                    </button>
+                    <button class="btn btn-danger" (click)="save()" *ngIf="address_selected"> EDITAR DIRECCIÓN </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
