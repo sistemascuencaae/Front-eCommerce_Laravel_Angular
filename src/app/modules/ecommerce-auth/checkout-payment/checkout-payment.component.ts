@@ -234,6 +234,7 @@ export class CheckoutPaymentComponent {
             {
               amount: {
                 value: (this.TotalPrice / this.ConversationDolar).toFixed(2)
+                // value: '899.23'
               }
             }
           ]
@@ -278,7 +279,7 @@ export class CheckoutPaymentComponent {
           console.log(resp);
           // alertSuccess(resp.message_text);
         })
-        location.reload();
+        // location.reload();
         // return actions.order.capture().then(captureOrderHandler);
       },
 

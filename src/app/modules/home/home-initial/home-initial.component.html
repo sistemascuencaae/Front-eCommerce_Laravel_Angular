@@ -152,7 +152,8 @@
                             </div>
                             <div class="topr_content">
                                 <a [routerLink]="[ '/producto/', product.slug ]">
-                                    <h4>{{ product.tittle.length > 15 ? product.tittle.slice(0, 30)+"..." : product.tittle
+                                    <h4>{{ product.tittle.length > 15 ? product.tittle.slice(0, 30)+"..." :
+                                        product.tittle
                                         }} </h4>
                                 </a>
                                 <div class="price">
@@ -162,13 +163,18 @@
                                 <div class="rating">
                                     <div class="d-flex align-items-center justify-content-start">
                                         <div class="rating_star">
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': product.avg_rating >= 1,'lar': product.avg_rating < 1}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': product.avg_rating >= 2,'lar': product.avg_rating < 2}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': product.avg_rating >= 3,'lar': product.avg_rating < 3}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': product.avg_rating >= 4,'lar': product.avg_rating < 4}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': product.avg_rating >= 5,'lar': product.avg_rating < 5}"></i></span>
                                         </div>
-                                        <p class="rating_count">(150)</p>
+                                        <p class="rating_count">({{ product.reviews_count }})</p>
                                     </div>
                                 </div>
                             </div>
@@ -538,7 +544,8 @@
                         </div>
                         <div class="sna_content">
                             <a [routerLink]="[ '/producto/', products_aletorio.slug ]">
-                                <h4>{{ products_aletorio.tittle.length > 15 ? products_aletorio.tittle.slice(0, 20)+"..."
+                                <h4>{{ products_aletorio.tittle.length > 15 ? products_aletorio.tittle.slice(0,
+                                    20)+"..."
                                     : products_aletorio.tittle }}</h4>
                             </a>
                             <div class="ratprice">
@@ -549,13 +556,18 @@
                                 <div class="rating">
                                     <div class="d-flex align-items-center justify-content-start">
                                         <div class="rating_star">
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': products_aletorio.avg_rating >= 1,'lar': products_aletorio.avg_rating < 1}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': products_aletorio.avg_rating >= 2,'lar': products_aletorio.avg_rating < 2}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': products_aletorio.avg_rating >= 3,'lar': products_aletorio.avg_rating < 3}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': products_aletorio.avg_rating >= 4,'lar': products_aletorio.avg_rating < 4}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': products_aletorio.avg_rating >= 5,'lar': products_aletorio.avg_rating < 5}"></i></span>
                                         </div>
-                                        <p class="rating_count">(150)</p>
+                                        <p class="rating_count">({{ products_aletorio.reviews_count }})</p>
                                     </div>
                                 </div>
                             </div>
@@ -735,7 +747,8 @@
                         </div>
                         <div class="sna_content">
                             <a [routerLink]="[ '/producto/', products_aletorio.slug ]">
-                                <h4>{{ products_aletorio.tittle.length > 15 ? products_aletorio.tittle.slice(0, 20)+"..."
+                                <h4>{{ products_aletorio.tittle.length > 15 ? products_aletorio.tittle.slice(0,
+                                    20)+"..."
                                     : products_aletorio.tittle }}</h4>
                             </a>
                             <div class="ratprice">
@@ -746,13 +759,18 @@
                                 <div class="rating">
                                     <div class="d-flex align-items-center justify-content-start">
                                         <div class="rating_star">
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
-                                            <span><i class="las la-star"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': products_aletorio.avg_rating >= 1,'lar': products_aletorio.avg_rating < 1}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': products_aletorio.avg_rating >= 2,'lar': products_aletorio.avg_rating < 2}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': products_aletorio.avg_rating >= 3,'lar': products_aletorio.avg_rating < 3}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': products_aletorio.avg_rating >= 4,'lar': products_aletorio.avg_rating < 4}"></i></span>
+                                            <span><i class="la-star"
+                                                    [ngClass]="{'las': products_aletorio.avg_rating >= 5,'lar': products_aletorio.avg_rating < 5}"></i></span>
                                         </div>
-                                        <p class="rating_count">(150)</p>
+                                        <p class="rating_count">({{ products_aletorio.reviews_count }})</p>
                                     </div>
                                 </div>
                             </div>
