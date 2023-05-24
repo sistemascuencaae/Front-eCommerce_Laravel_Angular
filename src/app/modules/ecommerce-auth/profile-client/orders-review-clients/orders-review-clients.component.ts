@@ -11,16 +11,21 @@ export class OrdersReviewClientsComponent {
   sale_detail: any;
   constructor() { }
 
-  ngOnInit(): void {
-  }
-  changeView(sale_detail: any, value: any) {
+  ngOnInit(): void { }
 
+  changeView(sale_detail: any, value: any) {
+    this.IS_FORM = value;
+    this.sale_detail = sale_detail;
   }
 
   addReview(value: any) {
-
+    console.log(value);
+    this.IS_FORM = false;
+    let INDEX = this.listReviews.findIndex((item: any) => item.id == value.sale_detail_id);
+    this.listReviews[INDEX].review = value.review;
   }
-  backView(value: any) {
 
+  backView(value: any) {
+    this.IS_FORM = value;
   }
 }

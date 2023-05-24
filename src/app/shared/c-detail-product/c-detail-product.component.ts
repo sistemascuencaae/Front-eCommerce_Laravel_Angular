@@ -31,7 +31,6 @@ export class CDetailProductComponent {
         $('.product_quickview').addClass('active');
         $('body').css('overflow-y', 'hidden');
       }
-
     }, 50);
   }
 
@@ -49,9 +48,6 @@ export class CDetailProductComponent {
     }
   }
   addQ() {
-    // if(){
-
-    // }
     this.quantity++;
   }
 
@@ -97,6 +93,38 @@ export class CDetailProductComponent {
         return;
       } else {
         this._cartService.changeCart(resp.cart_shop);
+      }
+    })
+  }
+
+  addWish(product_selected_modal: any) {
+    if (!this._authService.user) {
+      alert("NECESITAS LOGUEARTE");
+      return;
+    }
+
+    if (this.product_selected_modal.checked_inventario == 2) { //MULTIPLE
+      if (!this.product_size_selected || !this.product_size_color_selected) {
+        alert("NECESITAS INGRESAR UN TAMAÑO Y COLOR");
+        return;
+      }
+    }
+
+    let data = {
+      user_id: this._authService.user.id,
+      product_id: this.product_selected_modal.id,
+      product_size_id: this.product_size_selected ? this.product_size_selected.id : null,
+      product_color_size_id: this.product_size_color_selected ? this.product_size_color_selected.id : null,
+    }
+
+    this._cartService.addWishList(data).subscribe((resp: any) => {
+      console.log(resp);
+      if (resp.message == 403) {
+        alert(resp.message_text);
+        return;
+      } else {
+        this._cartService.changeWish(resp.wishlist);
+        alert("SE HA AGREGADO EL PRODUCTO A LA LISTA DE DESEO");
       }
     })
   }

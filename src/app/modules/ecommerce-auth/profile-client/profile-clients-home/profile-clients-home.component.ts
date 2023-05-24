@@ -18,6 +18,8 @@ export class ProfileClientsHomeComponent {
   listReviews: any = [];
   selected_menu: any = null;
 
+  // wishList: any = [];
+
   constructor(
     public _profileHomeService: ProfileClientService,
     public ativerouter: ActivatedRoute,
@@ -32,8 +34,7 @@ export class ProfileClientsHomeComponent {
       this.listAdrees = resp.address;
       this.listOrders = resp.orders.data;
       this.listReviews = resp.reviews;
-      console.log('this.listReviews');
-      console.log(this.listReviews);
+      // this.wishList = resp.wishlists;
     })
 
   }

@@ -87,16 +87,14 @@
             </div>
             <!-- account content -->
             <div class="col-lg-9">
-                <app-orders-review-clients *ngIf="selectorMenu == 5"
-                    [listReviews]="listReviews"></app-orders-review-clients>
-                <!-- <app-wishlist-clients *ngIf="selectorMenu == 6"></app-wishlist-clients> -->
                 <app-profile-information *ngIf="selectorMenu == 1"
                     [user_selected]="user_selected"></app-profile-information>
                 <app-profile-address *ngIf="selectorMenu == 2" [listAdrees]="listAdrees"></app-profile-address>
                 <app-profile-passwords *ngIf="selectorMenu == 3"></app-profile-passwords>
                 <app-orders-clients *ngIf="selectorMenu == 4" [listOrders]="listOrders"></app-orders-clients>
-                <app-orders-review-clients *ngIf="selectorMenu == 5"></app-orders-review-clients>
-                <!-- <app-wishlist-clients *ngIf="selectorMenu == 6"></app-wishlist-clients> -->
+                <app-orders-review-clients *ngIf="selectorMenu == 5"
+                    [listReviews]="listReviews"></app-orders-review-clients>
+                <app-wishlist-clients *ngIf="selectorMenu == 6"></app-wishlist-clients>
             </div>
 
         </div>

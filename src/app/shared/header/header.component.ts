@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth-profile/_services/auth.service';
 import { CartShopsService } from 'src/app/modules/home/_services/cart-shops.service';
+import { HomeService } from 'src/app/modules/home/_services/home.service';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +15,22 @@ export class HeaderComponent implements OnInit {
   listCarts: any = [];
 
   TotalPrice: any = 0;
+
+  listWish: any = [];
+  search_product: any = null;
+
+  source: any;
+
+  @ViewChild("filter") filter?: ElementRef;
+
+  sugerencias: any = [];
+  categories: any = [];
+
   constructor(
     public authService: AuthService,
     public router: Router,
     public _cartService: CartShopsService,
+    public _homeService: HomeService,
   ) { }
 
   ngOnInit(): void {
@@ -29,19 +42,60 @@ export class HeaderComponent implements OnInit {
         this._cartService.changeCart(element);
       });;
     })
+
     this._cartService.currentDataCart$.subscribe((resp: any) => {
       // console.log(resp);
       this.listCarts = resp;
       this.TotalPrice = this.listCarts.reduce((sum: any, item: any) => sum + item.total, 0);
     })
+
+    this._cartService.listWish().subscribe((resp: any) => {
+      // console.log(resp);
+      resp.wishlists.forEach((element: any) => {
+        this._cartService.changeWish(element);
+      });;
+    })
+
+    this._cartService.currentDataWish$.subscribe((resp: any) => {
+      console.log(resp);
+      // resp.wishlists.forEach((element: any) => {
+      //   this._cartService.changeWish(element);
+      // });;
+      this.listWish = resp;
+    })
+
   }
+
+  ngAfterViewInit(): void {
+    // this.source = fromEvent(this.filter?.nativeElement, "keyup");
+    // this.source.pipe(debounceTime(500)).subscribe((c:any) => {
+    //   console.log(this.search_product);
+    //   let data = {
+    //     search_product: this.search_product,
+    //   }
+    //   if(this.search_product.length > 1){
+    //     this._homeService.listProducts(data).subscribe((resp:any) => {
+    //       console.log(resp);
+    //       this.sugerencias = resp.products;
+    //     })
+    //   }
+    // })
+  }
+
+  searchForEnter() {
+    // console.log(this.search_product);
+    // this.router.navigateByUrl("lista-de-productos-totales?search_product="+this.search_product);
+  }
+
   removeItem(cart: any) {
     this._cartService.deleteCartShop(cart.id).subscribe();
     this._cartService.removeItemCart(cart);
   }
+
   isRouterActive() {
     return this.router.url == "" || this.router.url == "/" ? true : false;
   }
+
   logout() {
     this.authService.logout();
   }
