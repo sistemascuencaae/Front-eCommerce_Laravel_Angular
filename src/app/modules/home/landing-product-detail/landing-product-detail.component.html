@@ -2,8 +2,8 @@
 <div class="container">
     <div class="breadcrumbs">
         <a href="#"><i class="las la-home"></i></a>
-        <a href="#">Shop</a>
-        <a href="#" class="active">Men's Adidas Courtsmash</a>
+        <a href="#">Producto</a>
+        <a href="#" class="active" *ngIf="product_selected">{{ product_selected.tittle }}</a>
     </div>
 </div>
 
@@ -163,7 +163,7 @@
             <div class="pv_tab_buttons" class="spec_text">
                 <div class="pbt_single_btn active" data-target=".info">Product Info</div>
                 <div class="pbt_single_btn" data-target=".qna">Question & Answer</div>
-                <div class="pbt_single_btn" data-target=".review">Review (10)</div>
+                <div class="pbt_single_btn" data-target=".review">Reviews ({{reviews.length}})</div>
             </div>
             <div class="pb_tab_content info active">
                 <div class="row" *ngIf="product_selected">
@@ -240,7 +240,7 @@
                             <span><i class="las la-star"></i></span>
                             <span><i class="las la-star"></i></span>
                         </div>
-                        <div class="trating_count">20 Ratings</div>
+                        <div class="trating_count">{{reviews.length}} Reviews</div>
                     </div>
                     <div class="overall_rating">
                         <div class="single_ovrating d-flex align-items-center">
@@ -252,7 +252,7 @@
                                 <span><i class="las la-star"></i></span>
                             </div>
                             <div class="rating_pbox"><span style="width: 70%;"></span></div>
-                            <p class="rating_count">18</p>
+                            <p class="rating_count">{{ getCountReview(5) }}</p>
                         </div>
                         <div class="single_ovrating d-flex align-items-center">
                             <div class="rating_star">
@@ -263,7 +263,7 @@
                                 <span><i class="lar la-star"></i></span>
                             </div>
                             <div class="rating_pbox"><span style="width: 20%;"></span></div>
-                            <p class="rating_count">2</p>
+                            <p class="rating_count">{{ getCountReview(4) }}</p>
                         </div>
                         <div class="single_ovrating d-flex align-items-center">
                             <div class="rating_star">
@@ -274,7 +274,7 @@
                                 <span><i class="lar la-star"></i></span>
                             </div>
                             <div class="rating_pbox"><span style="width: 0%;"></span></div>
-                            <p class="rating_count">0</p>
+                            <p class="rating_count">{{ getCountReview(3) }}</p>
                         </div>
                         <div class="single_ovrating d-flex align-items-center">
                             <div class="rating_star">
@@ -285,7 +285,7 @@
                                 <span><i class="lar la-star"></i></span>
                             </div>
                             <div class="rating_pbox"><span style="width: 0%;"></span></div>
-                            <p class="rating_count">0</p>
+                            <p class="rating_count">{{ getCountReview(2) }}</p>
                         </div>
                         <div class="single_ovrating d-flex align-items-center">
                             <div class="rating_star">
@@ -296,12 +296,12 @@
                                 <span><i class="lar la-star"></i></span>
                             </div>
                             <div class="rating_pbox"><span style="width: 0%;"></span></div>
-                            <p class="rating_count">0</p>
+                            <p class="rating_count">{{ getCountReview(1) }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="review_header d-flex align-items-center justify-content-between">
-                    <p class="m-0 text-semibold">Product Reviews</p>
+                    <p class="m-0 text-semibold">Reseña de Productos</p>
                     <div class="review_filters">
                         <select class="nice_select">
                             <option value="">Sort by</option>
@@ -311,7 +311,33 @@
                     </div>
                 </div>
                 <div class="review_cont_wrap">
-                    <div class="single_review_wrp">
+                    <ng-container *ngFor="let review of reviews">
+                        <div class="single_review_wrp">
+                            <div class="review_avatar">
+                                <img loading="lazy" [src]="review.user.avatar" alt="user">
+                            </div>
+                            <div class="review_content">
+                                <h5>{{ review.user.full_name }}</h5>
+                                <div class="rating_star">
+                                    <span><i class="la-star"
+                                            [ngClass]="{'las': review.rating >= 1,'lar': review.rating < 1}"></i></span>
+                                    <span><i class="la-star"
+                                            [ngClass]="{'las': review.rating >= 2,'lar': review.rating < 2}"></i></span>
+                                    <span><i class="la-star"
+                                            [ngClass]="{'las': review.rating >= 3,'lar': review.rating < 3}"></i></span>
+                                    <span><i class="la-star"
+                                            [ngClass]="{'las': review.rating >= 4,'lar': review.rating < 4}"></i></span>
+                                    <span><i class="la-star"
+                                            [ngClass]="{'las': review.rating >= 5,'lar': review.rating < 5}"></i></span>
+                                </div>
+                                <div class="review_date">{{ review.created_at }}</div>
+                                <div class="review_body">
+                                    <p>{{ review.message }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <!-- <div class="single_review_wrp">
                         <div class="review_avatar">
                             <img loading="lazy" src="assets/images/avatar.png" alt="user">
                         </div>
@@ -336,8 +362,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="single_review_wrp border-bottom-0 mb-0 pb-0">
+                    </div> -->
+                    <!-- <div class="single_review_wrp border-bottom-0 mb-0 pb-0">
                         <div class="review_avatar">
                             <img loading="lazy" src="assets/images/avatar.png" alt="user">
                         </div>
@@ -362,7 +388,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -395,7 +421,8 @@
                     </div>
                     <div class="sna_content">
                         <a [href]="'/producto/'+product.slug">
-                            <h4>{{ product.tittle.length > 15 ? product.tittle.slice(0, 20)+"..." : product.tittle }}</h4>
+                            <h4>{{ product.tittle.length > 15 ? product.tittle.slice(0, 20)+"..." : product.tittle }}
+                            </h4>
                         </a>
                         <div class="ratprice">
                             <div class="price">
@@ -405,13 +432,18 @@
                             <div class="rating">
                                 <div class="d-flex align-items-center justify-content-start">
                                     <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="la-star"
+                                                [ngClass]="{'las': product.avg_rating >= 1,'lar': product.avg_rating < 1}"></i></span>
+                                        <span><i class="la-star"
+                                                [ngClass]="{'las': product.avg_rating >= 2,'lar': product.avg_rating < 2}"></i></span>
+                                        <span><i class="la-star"
+                                                [ngClass]="{'las': product.avg_rating >= 3,'lar': product.avg_rating < 3}"></i></span>
+                                        <span><i class="la-star"
+                                                [ngClass]="{'las': product.avg_rating >= 4,'lar': product.avg_rating < 4}"></i></span>
+                                        <span><i class="la-star"
+                                                [ngClass]="{'las': product.avg_rating >= 5,'lar': product.avg_rating < 5}"></i></span>
                                     </div>
-                                    <p class="rating_count">(150)</p>
+                                    <p class="rating_count">({{ product.reviews_count }})</p>
                                 </div>
                             </div>
                         </div>
