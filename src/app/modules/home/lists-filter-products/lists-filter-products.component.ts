@@ -47,12 +47,15 @@ export class ListsFilterProductsComponent {
     $("#slider-range").slider({
       range: true,
       min: 1,
-      max: 1000,
+      max: 50000,
       values: [0, 0],
       slide: (event: any, ui: any) => {
         this.min_price = ui.values[0];
         this.max_price = ui.values[1];
         $("#amount").val("PEN " + ui.values[0] + " - PEN " + ui.values[1]);
+      },
+      // para que no haga multiples peticiones al back usamos stop
+      stop: () => { // Se ejecuta cuando haya terminado de elegir un rango de precio
         this.listProducts();
       }
     });
@@ -95,13 +98,13 @@ export class ListsFilterProductsComponent {
 
   addSizeProduct(size: any) {
     this.size_selected = size.name;
-    console.log(this.size_selected);
+    // console.log(this.size_selected);
     this.listProducts();
   }
 
   addColorProduct(color: any) {
     this.color_selected = color.id;
-    console.log(this.color_selected);
+    // console.log(this.color_selected);
     this.listProducts();
   }
 
