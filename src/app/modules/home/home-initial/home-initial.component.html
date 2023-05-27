@@ -7,19 +7,6 @@
                     <div class="single_hero_slider bg-3">
                         <div class="container">
                             <div class="row align-items-center">
-                                <!-- <div class="col-lg-6 col-sm-7">
-                                <div class="hero_content text-center text-sm-start">
-                                    <p>Get up to 50% off Today only</p>
-                                    <h1>iPhone 11 Pro Max </h1>
-                                    <div class="price">
-                                        <span class="org_price">$450.00</span>
-                                        <span class="prev_price">$550.45</span>
-                                    </div>
-                                    <div class="hero_btn">
-                                        <a class="default_btn rounded" href="shop-grid.html">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div> -->
                                 <div class="col-12">
                                     <div class="hero_img">
                                         <img loading="lazy" style="max-height: initial !important;"
@@ -30,55 +17,6 @@
                         </div>
                     </div>
                 </ng-container>
-
-                <!-- <div class="single_hero_slider bg-1">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-sm-6">
-                                <div class="hero_content text-center text-sm-start">
-                                    <p>Get up to 50% off Today only</p>
-                                    <h1>iPhone 12 Pro Max </h1>
-                                    <div class="price">
-                                        <span class="org_price">$450.00</span>
-                                        <span class="prev_price">$550.45</span>
-                                    </div>
-                                    <div class="hero_btn">
-                                        <a class="default_btn rounded" href="shop-grid.html">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 d-none d-sm-block">
-                                <div class="hero_img">
-                                    <img loading="lazy"  src="assets/images/iphone-12.png" alt="phone">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single_hero_slider bg-2">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-sm-6">
-                                <div class="hero_content text-center text-sm-start">
-                                    <p>Get up to 50% off Today only</p>
-                                    <h1>Apple iPhone XR</h1>
-                                    <div class="price">
-                                        <span class="org_price">$450.00</span>
-                                        <span class="prev_price">$550.45</span>
-                                    </div>
-                                    <div class="hero_btn">
-                                        <a class="default_btn rounded" href="shop-grid.html">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 d-none d-sm-block">
-                                <div class="hero_img">
-                                    <img loading="lazy"  src="assets/images/iphone-xr.png" alt="phone">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -156,7 +94,12 @@
                                         product.tittle
                                         }} </h4>
                                 </a>
-                                <div class="price">
+                                <div class="price" *ngIf="product.discount_g">
+                                    <span class="org_price">{{ getNewPriceS(product.price_soles,product.discount_g) }}
+                                        PEN</span>
+                                    <span class="prev_price">{{ product.price_soles }} PEN</span>
+                                </div>
+                                <div class="price" *ngIf="!product.discount_g">
                                     <span class="org_price">{{ product.price_soles }} PEN</span>
                                     <!-- <span class="prev_price">$300.45</span> -->
                                 </div>
@@ -181,337 +124,11 @@
                         </div>
                     </ng-container>
 
-                    <!-- <div class="single_top_ranking">
-                      <div class="topr_img">
-                          <a href="product-view.html">
-                              <img loading="lazy"  src="assets/images/watch2.png" alt="product">
-                          </a>
-                          <span class="tag">2</span>
-                      </div>
-                      <div class="topr_content">
-                          <a href="product-view.html">
-                              <h4> Callie Smartwatch</h4>
-                          </a>
-                          <div class="price">
-                              <span class="org_price">$150.00</span>
-                              <span class="prev_price">$200.45</span>
-                          </div>
-                          <div class="rating">
-                              <div class="d-flex align-items-center justify-content-start">
-                                  <div class="rating_star">
-                                      <span><i class="las la-star"></i></span>
-                                      <span><i class="las la-star"></i></span>
-                                      <span><i class="las la-star"></i></span>
-                                      <span><i class="las la-star"></i></span>
-                                      <span><i class="las la-star"></i></span>
-                                  </div>
-                                  <p class="rating_count">(150)</p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="single_top_ranking">
-                      <div class="topr_img">
-                          <a href="product-view.html">
-                              <img loading="lazy"  src="assets/images/watch3.png" alt="product">
-                          </a>
-                          <span class="tag">3</span>
-                      </div>
-                      <div class="topr_content">
-                          <a href="product-view.html">
-                              <h4>Cruz Smartwatch</h4>
-                          </a>
-                          <div class="price">
-                              <span class="org_price">$45.00</span>
-                              <span class="prev_price">$55.45</span>
-                          </div>
-                          <div class="rating">
-                              <div class="d-flex align-items-center justify-content-start">
-                                  <div class="rating_star">
-                                      <span><i class="las la-star"></i></span>
-                                      <span><i class="las la-star"></i></span>
-                                      <span><i class="las la-star"></i></span>
-                                      <span><i class="las la-star"></i></span>
-                                      <span><i class="las la-star"></i></span>
-                                  </div>
-                                  <p class="rating_count">(150)</p>
-                              </div>
-                          </div>
-                      </div>
-                  </div> -->
+
                 </div>
             </ng-container>
 
-            <!-- <div class="col-xl-3 col-lg-4 col-6">
-                <h4 class="single_topr_title">Mobile</h4>
-                <div class="single_top_ranking">
-                    <div class="topr_img">
-                        <a href="product-view.html">
-                            <img loading="lazy"  src="assets/images/phone-1.png" alt="product">
-                        </a>
-                        <span class="tag">1</span>
-                    </div>
-                    <div class="topr_content">
-                        <a href="product-view.html">
-                            <h4>Xiaomi Note 7</h4>
-                        </a>
-                        <div class="price">
-                            <span class="org_price">$45.00</span>
-                            <span class="prev_price">$55.45</span>
-                        </div>
-                        <div class="rating">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <div class="rating_star">
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                </div>
-                                <p class="rating_count">(150)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single_top_ranking">
-                    <div class="topr_img">
-                        <a href="product-view.html">
-                            <img loading="lazy"  src="assets/images/phone-2.png" alt="product">
-                        </a>
-                        <span class="tag">2</span>
-                    </div>
-                    <div class="topr_content">
-                        <a href="product-view.html">
-                            <h4>iPhone 11 max</h4>
-                        </a>
-                        <div class="price">
-                            <span class="org_price">$45.00</span>
-                            <span class="prev_price">$55.45</span>
-                        </div>
-                        <div class="rating">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <div class="rating_star">
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                </div>
-                                <p class="rating_count">(150)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single_top_ranking">
-                    <div class="topr_img">
-                        <a href="product-view.html">
-                            <img loading="lazy"  src="assets/images/phone-3.png" alt="product">
-                        </a>
-                        <span class="tag">3</span>
-                    </div>
-                    <div class="topr_content">
-                        <a href="product-view.html">
-                            <h4>Oppo poco f1</h4>
-                        </a>
-                        <div class="price">
-                            <span class="org_price">$45.00</span>
-                            <span class="prev_price">$55.45</span>
-                        </div>
-                        <div class="rating">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <div class="rating_star">
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                </div>
-                                <p class="rating_count">(150)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-6">
-                <h4 class="single_topr_title">Laptop</h4>
-                <div class="single_top_ranking">
-                    <div class="topr_img">
-                        <a href="product-view.html">
-                            <img loading="lazy"  src="assets/images/laptop-1.png" alt="product">
-                        </a>
-                        <span class="tag">1</span>
-                    </div>
-                    <div class="topr_content">
-                        <a href="product-view.html">
-                            <h4>Dell inspire 14</h4>
-                        </a>
-                        <div class="price">
-                            <span class="org_price">$45.00</span>
-                            <span class="prev_price">$55.45</span>
-                        </div>
-                        <div class="rating">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <div class="rating_star">
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                </div>
-                                <p class="rating_count">(150)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single_top_ranking">
-                    <div class="topr_img">
-                        <a href="product-view.html">
-                            <img loading="lazy"  src="assets/images/laptop-2.png" alt="product">
-                        </a>
-                        <span class="tag">2</span>
-                    </div>
-                    <div class="topr_content">
-                        <a href="product-view.html">
-                            <h4>HP Omen 13</h4>
-                        </a>
-                        <div class="price">
-                            <span class="org_price">$45.00</span>
-                            <span class="prev_price">$55.45</span>
-                        </div>
-                        <div class="rating">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <div class="rating_star">
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                </div>
-                                <p class="rating_count">(150)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single_top_ranking">
-                    <div class="topr_img">
-                        <a href="product-view.html">
-                            <img loading="lazy"  src="assets/images/laptop-3.png" alt="product">
-                        </a>
-                        <span class="tag">3</span>
-                    </div>
-                    <div class="topr_content">
-                        <a href="product-view.html">
-                            <h4>HP Pavilion 15</h4>
-                        </a>
-                        <div class="price">
-                            <span class="org_price">$45.00</span>
-                            <span class="prev_price">$55.45</span>
-                        </div>
-                        <div class="rating">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <div class="rating_star">
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                </div>
-                                <p class="rating_count">(150)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-6 d-lg-none d-block d-xl-block">
-                <h4 class="single_topr_title">Headphones</h4>
-                <div class="single_top_ranking">
-                    <div class="topr_img">
-                        <a href="product-view.html">
-                            <img loading="lazy"  src="assets/images/headphone-1.png" alt="product">
-                        </a>
-                        <span class="tag">1</span>
-                    </div>
-                    <div class="topr_content">
-                        <a href="product-view.html">
-                            <h4>Bose Headphones</h4>
-                        </a>
-                        <div class="price">
-                            <span class="org_price">$45.00</span>
-                            <span class="prev_price">$55.45</span>
-                        </div>
-                        <div class="rating">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <div class="rating_star">
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                </div>
-                                <p class="rating_count">(150)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single_top_ranking">
-                    <div class="topr_img">
-                        <a href="product-view.html">
-                            <img loading="lazy"  src="assets/images/headphone-2.png" alt="product">
-                        </a>
-                        <span class="tag">2</span>
-                    </div>
-                    <div class="topr_content">
-                        <a href="product-view.html">
-                            <h4>COWIN E7 Active </h4>
-                        </a>
-                        <div class="price">
-                            <span class="org_price">$45.00</span>
-                            <span class="prev_price">$55.45</span>
-                        </div>
-                        <div class="rating">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <div class="rating_star">
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                </div>
-                                <p class="rating_count">(150)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single_top_ranking">
-                    <div class="topr_img">
-                        <a href="product-view.html">
-                            <img loading="lazy"  src="assets/images/headphone-3.png" alt="product">
-                        </a>
-                        <span class="tag">3</span>
-                    </div>
-                    <div class="topr_content">
-                        <a href="product-view.html">
-                            <h4>Beats Headphones</h4>
-                        </a>
-                        <div class="price">
-                            <span class="org_price">$45.00</span>
-                            <span class="prev_price">$55.45</span>
-                        </div>
-                        <div class="rating">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <div class="rating_star">
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                    <span><i class="las la-star"></i></span>
-                                </div>
-                                <p class="rating_count">(150)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+
         </div>
     </div>
 </section>
@@ -537,7 +154,8 @@
                                     (click)="openModal(products_aletorio)" tabindex="0">
                                     <i class="icon-search-left"></i>
                                 </a>
-                                <a href="#" class="icon" tabindex="0">
+                                <a href="javascript:void(0)" (click)="addWish(products_aletorio)" class="icon"
+                                    tabindex="0">
                                     <i class="icon-heart"></i>
                                 </a>
                             </div>
@@ -549,7 +167,13 @@
                                     : products_aletorio.tittle }}</h4>
                             </a>
                             <div class="ratprice">
-                                <div class="price">
+                                <div class="price" *ngIf="products_aletorio.discount_g">
+                                    <span class="org_price">{{
+                                        getNewPriceS(products_aletorio.price_soles,products_aletorio.discount_g) }}
+                                        PEN</span>
+                                    <span class="prev_price">{{ products_aletorio.price_soles }} PEN</span>
+                                </div>
+                                <div class="price" *ngIf="!products_aletorio.discount_g">
                                     <span class="org_price">{{ products_aletorio.price_soles }} PEN</span>
                                     <!-- <span class="prev_price">$55.45</span> -->
                                 </div>
@@ -572,136 +196,14 @@
                                 </div>
                             </div>
                             <div class="product_adcart">
-                                <button class="default_btn">Add to cart</button>
+                                <button class="default_btn" (click)="addCart(products_aletorio)">Add to cart</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </ng-container>
 
-            <!-- <div class="col-lg-3 col-sm-6">
-                <div class="single_new_arrive">
-                    <div class="sna_img">
-                        <img loading="lazy"  class="prd_img" src="assets/images/hd-monitor.png" alt="product">
-                        <div class="prodcut_hovcont">
-                            <a href="javascript:void(0)" class="icon open_quickview" tabindex="0">
-                               <i class="icon-search-left"></i>
-                            </a>
-                            <a href="#" class="icon" tabindex="0">
-                                <i class="icon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sna_content">
-                        <a href="product-view.html">
-                            <h4>SAMSUNG 27" Class Curved</h4>
-                        </a>
-                        <div class="ratprice">
-                            <div class="price">
-                                <span class="org_price">$45.00</span>
-                                <span class="prev_price">$55.45</span>
-                            </div>
-                            <div class="rating">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                    </div>
-                                    <p class="rating_count">(150)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product_adcart">
-                            <button class="default_btn">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_new_arrive">
-                    <div class="sna_img">
-                        <img loading="lazy"  class="prd_img" src="assets/images/headphone-3.png" alt="product">
-                        <div class="prodcut_hovcont">
-                            <a href="javascript:void(0)" class="icon open_quickview" tabindex="0">
-                               <i class="icon-search-left"></i>
-                            </a>
-                            <a href="#" class="icon" tabindex="0">
-                                <i class="icon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sna_content">
-                        <a href="product-view.html">
-                            <h4>COWIN E7 Active</h4>
-                        </a>
-                        <div class="ratprice">
-                            <div class="price">
-                                <span class="org_price">$45.00</span>
-                                <span class="prev_price">$55.45</span>
-                            </div>
-                            <div class="rating">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                    </div>
-                                    <p class="rating_count">(150)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product_adcart">
-                            <button class="default_btn">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_new_arrive">
-                    <div class="sna_img">
-                        <img loading="lazy"  class="prd_img" src="assets/images/phone-1.png" alt="product">
-                        <div class="prodcut_hovcont">
-                            <a href="javascript:void(0)" class="icon open_quickview" tabindex="0">
-                               <i class="icon-search-left"></i>
-                            </a>
-                            <a href="#" class="icon" tabindex="0">
-                                <i class="icon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sna_content">
-                        <a href="product-view.html">
-                            <h4>Xiaomi Note 7 Pro</h4>
-                        </a>
-                        <div class="ratprice">
-                            <div class="price">
-                                <span class="org_price">$45.00</span>
-                                <span class="prev_price">$55.45</span>
-                            </div>
-                            <div class="rating">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                    </div>
-                                    <p class="rating_count">(150)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product_adcart">
-                            <button class="default_btn">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+
         </div>
     </div>
 </section>
@@ -713,7 +215,7 @@
 
             <picture>
                 <source media="(min-width: 768px)" srcset="assets/images/offer-3.jpg">
-                <img loading="lazy" class="w-100" src="assets/images/brand-3.png" alt="ad">
+                <img loading="lazy" class="w-100" src="assets/images/offer-mobile-3.jpg" alt="ad">
             </picture>
         </a>
     </div>
@@ -740,7 +242,8 @@
                                     (click)="openModal(products_aletorio)" tabindex="0">
                                     <i class="icon-search-left"></i>
                                 </a>
-                                <a href="#" class="icon" tabindex="0">
+                                <a href="javascript:void(0)" (click)="addWish(products_aletorio)" class="icon"
+                                    tabindex="0">
                                     <i class="icon-heart"></i>
                                 </a>
                             </div>
@@ -752,9 +255,14 @@
                                     : products_aletorio.tittle }}</h4>
                             </a>
                             <div class="ratprice">
-                                <div class="price">
+                                <div class="price" *ngIf="products_aletorio.discount_g">
+                                    <span class="org_price">{{
+                                        getNewPriceS(products_aletorio.price_soles,products_aletorio.discount_g) }}
+                                        PEN</span>
+                                    <span class="prev_price">{{ products_aletorio.price_soles }} PEN</span>
+                                </div>
+                                <div class="price" *ngIf="!products_aletorio.discount_g">
                                     <span class="org_price">{{ products_aletorio.price_soles }} PEN</span>
-                                    <!-- <span class="prev_price">$55.45</span> -->
                                 </div>
                                 <div class="rating">
                                     <div class="d-flex align-items-center justify-content-start">
@@ -775,300 +283,12 @@
                                 </div>
                             </div>
                             <div class="product_adcart">
-                                <button class="default_btn">Add to cart</button>
+                                <button class="default_btn" (click)="addCart(products_aletorio)">Add to cart</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </ng-container>
-
-            <!-- <div class="col-lg-3 col-sm-6">
-                <div class="single_new_arrive">
-                    <div class="sna_img">
-                        <img loading="lazy"  class="prd_img" src="assets/images/mouch-logi.png" alt="product">
-                        <div class="prodcut_hovcont">
-                            <a href="javascript:void(0)" class="icon open_quickview" tabindex="0">
-                               <i class="icon-search-left"></i>
-                            </a>
-                            <a href="#" class="icon" tabindex="0">
-                                <i class="icon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sna_content">
-                        <a href="product-view.html">
-                            <h4>Logitech Wireless Mouse</h4>
-                        </a>
-                        <div class="ratprice">
-                            <div class="price">
-                                <span class="org_price">$45.00</span>
-                                <span class="prev_price">$55.45</span>
-                            </div>
-                            <div class="rating">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                    </div>
-                                    <p class="rating_count">(150)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product_adcart">
-                            <button class="default_btn">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_new_arrive">
-                    <div class="sna_img">
-                        <img loading="lazy"  class="prd_img" src="assets/images/headphone-3.png" alt="product">
-                        <div class="prodcut_hovcont">
-                            <a href="javascript:void(0)" class="icon open_quickview" tabindex="0">
-                               <i class="icon-search-left"></i>
-                            </a>
-                            <a href="#" class="icon" tabindex="0">
-                                <i class="icon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sna_content">
-                        <a href="product-view.html">
-                            <h4>COWIN E7 Active</h4>
-                        </a>
-                        <div class="ratprice">
-                            <div class="price">
-                                <span class="org_price">$45.00</span>
-                                <span class="prev_price">$55.45</span>
-                            </div>
-                            <div class="rating">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                    </div>
-                                    <p class="rating_count">(150)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product_adcart">
-                            <button class="default_btn">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_new_arrive">
-                    <div class="sna_img">
-                        <img loading="lazy"  class="prd_img" src="assets/images/phone-1.png" alt="product">
-                        <div class="prodcut_hovcont">
-                            <a href="javascript:void(0)" class="icon open_quickview" tabindex="0">
-                               <i class="icon-search-left"></i>
-                            </a>
-                            <a href="#" class="icon" tabindex="0">
-                                <i class="icon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sna_content">
-                        <a href="product-view.html">
-                            <h4>Xiaomi Note 7 Pro</h4>
-                        </a>
-                        <div class="ratprice">
-                            <div class="price">
-                                <span class="org_price">$45.00</span>
-                                <span class="prev_price">$55.45</span>
-                            </div>
-                            <div class="rating">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                    </div>
-                                    <p class="rating_count">(150)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product_adcart">
-                            <button class="default_btn">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_new_arrive">
-                    <div class="sna_img">
-                        <img loading="lazy"  class="prd_img" src="assets/images/phone-2.png" alt="product">
-                        <div class="prodcut_hovcont">
-                            <a href="javascript:void(0)" class="icon open_quickview" tabindex="0">
-                               <i class="icon-search-left"></i>
-                            </a>
-                            <a href="#" class="icon" tabindex="0">
-                                <i class="icon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sna_content">
-                        <a href="product-view.html">
-                            <h4>iPhone 11 Pro</h4>
-                        </a>
-                        <div class="ratprice">
-                            <div class="price">
-                                <span class="org_price">$45.00</span>
-                                <span class="prev_price">$55.45</span>
-                            </div>
-                            <div class="rating">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                    </div>
-                                    <p class="rating_count">(150)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product_adcart">
-                            <button class="default_btn">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_new_arrive">
-                    <div class="sna_img">
-                        <img loading="lazy"  class="prd_img" src="assets/images/laptop-2.png" alt="product">
-                        <div class="prodcut_hovcont">
-                            <a href="javascript:void(0)" class="icon open_quickview" tabindex="0">
-                               <i class="icon-search-left"></i>
-                            </a>
-                            <a href="#" class="icon" tabindex="0">
-                                <i class="icon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sna_content">
-                        <a href="product-view.html">
-                            <h4>HP Omen 13</h4>
-                        </a>
-                        <div class="ratprice">
-                            <div class="price">
-                                <span class="org_price">$45.00</span>
-                                <span class="prev_price">$55.45</span>
-                            </div>
-                            <div class="rating">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                    </div>
-                                    <p class="rating_count">(150)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product_adcart">
-                            <button class="default_btn">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_new_arrive">
-                    <div class="sna_img">
-                        <img loading="lazy"  class="prd_img" src="assets/images/coverpad.png" alt="product">
-                        <div class="prodcut_hovcont">
-                            <a href="javascript:void(0)" class="icon open_quickview" tabindex="0">
-                               <i class="icon-search-left"></i>
-                            </a>
-                            <a href="#" class="icon" tabindex="0">
-                                <i class="icon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sna_content">
-                        <a href="product-view.html">
-                            <h4>Anti-Fray Cloth Gaming</h4>
-                        </a>
-                        <div class="ratprice">
-                            <div class="price">
-                                <span class="org_price">$95.00</span>
-                                <span class="prev_price">$120.45</span>
-                            </div>
-                            <div class="rating">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                    </div>
-                                    <p class="rating_count">(150)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product_adcart">
-                            <button class="default_btn">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_new_arrive">
-                    <div class="sna_img">
-                        <img loading="lazy"  class="prd_img" src="assets/images/headphone-2.png" alt="product">
-                        <div class="prodcut_hovcont">
-                            <a href="javascript:void(0)" class="icon open_quickview" tabindex="0">
-                               <i class="icon-search-left"></i>
-                            </a>
-                            <a href="#" class="icon" tabindex="0">
-                                <i class="icon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sna_content">
-                        <a href="product-view.html">
-                            <h4>Bose Headphone</h4>
-                        </a>
-                        <div class="ratprice">
-                            <div class="price">
-                                <span class="org_price">$45.00</span>
-                                <span class="prev_price">$55.45</span>
-                            </div>
-                            <div class="rating">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <div class="rating_star">
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                        <span><i class="las la-star"></i></span>
-                                    </div>
-                                    <p class="rating_count">(150)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product_adcart">
-                            <button class="default_btn">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </section>

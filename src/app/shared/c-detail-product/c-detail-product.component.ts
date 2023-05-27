@@ -72,19 +72,31 @@ export class CDetailProductComponent {
         return;
       }
     }
+    var type_discount_g = null;
+    var discount_g = null;
+    var precio_uni_total = 0;
+    var code_discount_g = null;
+    if (this.product_selected_modal.discount_g) {
+      type_discount_g = this.product_selected_modal.discount_g.type_discount;
+      discount_g = this.product_selected_modal.discount_g.discount;
+      code_discount_g = this.product_selected_modal.discount_g.code;
+      precio_uni_total = this.getNewPriceS(this.product_selected_modal.price_soles, this.product_selected_modal.discount_g);
+    } else {
+      precio_uni_total = this.product_selected_modal.price_soles;
+    }
     let data = {
       user_id: this._authService.user.id,
       product_id: this.product_selected_modal.id,
-      type_discount: null,
-      discount: null,
+      type_discount: type_discount_g,
+      discount: discount_g,
       cantidad: this.quantity,
       product_size_id: this.product_size_selected ? this.product_size_selected.id : null,
       product_color_size_id: this.product_size_color_selected ? this.product_size_color_selected.id : null,
       code_cupon: null,
-      code_discount: null,
-      precio_unitario: this.product_selected_modal.price_soles,
-      subtotal: this.product_selected_modal.price_soles,
-      total: this.product_selected_modal.price_soles * this.quantity,
+      code_discount: code_discount_g,
+      precio_unitario: precio_uni_total,
+      subtotal: precio_uni_total,
+      total: precio_uni_total * this.quantity,
     }
     this._cartService.addCartShop(data).subscribe((resp: any) => {
       console.log(resp);
@@ -93,6 +105,7 @@ export class CDetailProductComponent {
         return;
       } else {
         this._cartService.changeCart(resp.cart_shop);
+        alert("SE HA AGREADO EL PRODUCTO AL CARRITO");
       }
     })
   }
@@ -102,8 +115,7 @@ export class CDetailProductComponent {
       alert("NECESITAS LOGUEARTE");
       return;
     }
-
-    if (this.product_selected_modal.checked_inventario == 2) { //MULTIPLE
+    if (this.product_selected_modal.checked_inventario == 2) {//MULTIPLE
       if (!this.product_size_selected || !this.product_size_color_selected) {
         alert("NECESITAS INGRESAR UN TAMAÑO Y COLOR");
         return;
@@ -116,7 +128,7 @@ export class CDetailProductComponent {
       product_size_id: this.product_size_selected ? this.product_size_selected.id : null,
       product_color_size_id: this.product_size_color_selected ? this.product_size_color_selected.id : null,
     }
-
+    
     this._cartService.addWishList(data).subscribe((resp: any) => {
       console.log(resp);
       if (resp.message == 403) {
@@ -124,8 +136,19 @@ export class CDetailProductComponent {
         return;
       } else {
         this._cartService.changeWish(resp.wishlist);
-        alert("SE HA AGREGADO EL PRODUCTO A LA LISTA DE DESEO");
+        alert("SE HA AGREADO EL PRODUCTO A LA LISTA DE DESEO");
       }
     })
+
+  }
+
+  getNewPriceS(price_soles: number, discount_g: any) {
+    if (discount_g.type_discount == 1) { //%
+      return price_soles - (price_soles * discount_g.discount * 0.01);
+    }
+    if (discount_g.type_discount == 2) { //PEN
+      return price_soles - price_soles * discount_g.discount;
+    }
+    return 0;
   }
 }

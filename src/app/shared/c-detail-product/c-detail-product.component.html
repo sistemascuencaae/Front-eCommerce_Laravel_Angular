@@ -45,10 +45,17 @@
                             </p>
                             <p><span class="text-semibold">SKU:</span>{{ product_selected_modal.sku }}</p>
                         </div>
-                        <div class="price mt-3 mb-3 d-flex align-items-center">
-                            <span class="prev_price ms-0">$5000.00</span>
+
+                        <!-- error -->
+                        <div class="price mt-3 mb-3 d-flex align-items-center"
+                            *ngIf="product_selected_modal.discount_g">
+                            <span class="prev_price ms-0">{{ product_selected_modal.price_soles }} PEN</span>
+                            <span class="org_price ms-2">{{ getNewPriceS(product_selected_modal.price_soles, product_selected_modal.discount_g) }} PEN</span>
+                            <div class="disc_tag ms-3">{{ product_selected_modal.discount_g.discount }} {{ product_selected_modal.discount_g.type_discount == 1 ? '%' : 'PEN'}} </div>
+                        </div>
+                        <div class="price mt-3 mb-3 d-flex align-items-center"
+                            *ngIf="!product_selected_modal.discount_g">
                             <span class="org_price ms-2">{{ product_selected_modal.price_soles }} PEN</span>
-                            <div class="disc_tag ms-3">-30%</div>
                         </div>
                         <div class="pd_dtails text-justify">
                             <p>

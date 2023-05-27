@@ -1,0 +1,243 @@
+<!-- breadcrumbs -->
+<div class="container">
+    <div class="breadcrumbs">
+        <a href="index-1.html"><i class="las la-home"></i></a>
+        <a href="#" class="active">PRODUCTOS</a>
+    </div>
+</div>
+
+<!-- shop list view -->
+<div class="shop_wrap section_padding_b">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 position-relative">
+                <div class="filter_box py-3 px-3 shadow_sm">
+                    <div class="close_filter d-block d-lg-none"><i class="las la-times"></i></div>
+                    <div class="shop_filter d-block d-sm-none">
+                        <h4 class="filter_title">Sort by</h4>
+                        <div class="sorting_filter mb-2">
+                            <select class="nice_select">
+                                <option value="">Default sorting</option>
+                                <option value="">Price low-high</option>
+                                <option value="">Price high-low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="shop_filter">
+                        <h4 class="filter_title">Categorias</h4>
+                        <div class="filter_list">
+                            <ng-container *ngFor="let categorie of categories">
+                                <div class="custom_check d-flex align-items-center">
+                                    <input type="checkbox" class="check_inp" hidden [attr.id]="'cat-'+categorie.id"
+                                        (click)="addCategorie(categorie)">
+                                    <label [attr.for]="'cat-'+categorie.id">{{ categorie.name }}</label>
+                                    <p class="mb-0 ms-auto">({{ categorie.products_count }})</p>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="shop_filter">
+                        <h4 class="filter_title">Reviews</h4>
+                        <div class="review_rating">
+                            <div class="overall_rating">
+                                <div class="single_ovrating d-flex align-items-center" style="cursor: pointer;"
+                                    (click)="selectedReview(5)">
+                                    <div class="rating_star">
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="las la-star"></i></span>
+                                    </div>
+                                    <!-- <div><span style="width: 70%;"></span></div> -->
+                                    <p class="rating_count">{{ getCountReview(5) }}</p>
+                                </div>
+                                <div class=" single_ovrating d-flex align-items-center" style="cursor: pointer;"
+                                    (click)="selectedReview(4)">
+                                    <div class="rating_star">
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="lar la-star"></i></span>
+                                    </div>
+                                    <!-- <div class="rating_pbox"><span style="width: 20%;"></span></div> -->
+                                    <p class="rating_count">{{ getCountReview(4) }}</p>
+                                </div>
+                                <div class="single_ovrating d-flex align-items-center" style="cursor: pointer;"
+                                    (click)="selectedReview(3)">
+                                    <div class="rating_star">
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="lar la-star"></i></span>
+                                        <span><i class="lar la-star"></i></span>
+                                    </div>
+                                    <!-- <div class="rating_pbox"><span style="width: 0%;"></span></div> -->
+                                    <p class="rating_count">{{ getCountReview(3) }}</p>
+                                </div>
+                                <div class="single_ovrating d-flex align-items-center" style="cursor: pointer;"
+                                    (click)="selectedReview(2)">
+                                    <div class="rating_star">
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="lar la-star"></i></span>
+                                        <span><i class="lar la-star"></i></span>
+                                        <span><i class="lar la-star"></i></span>
+                                    </div>
+                                    <!-- <div class="rating_pbox"><span style="width: 0%;"></span></div> -->
+                                    <p class="rating_count">{{ getCountReview(2) }}</p>
+                                </div>
+                                <div class="single_ovrating d-flex align-items-center" style="cursor: pointer;"
+                                    (click)="selectedReview(1)">
+                                    <div class="rating_star">
+                                        <span><i class="las la-star"></i></span>
+                                        <span><i class="lar la-star"></i></span>
+                                        <span><i class="lar la-star"></i></span>
+                                        <span><i class="lar la-star"></i></span>
+                                        <span><i class="lar la-star"></i></span>
+                                    </div>
+                                    <!-- <div class="rating_pbox"><span style="width: 0%;"></span></div> -->
+                                    <p class="rating_count">{{ getCountReview(1) }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shop_filter">
+                        <h4 class="filter_title">Precio:</h4>
+                        <div class="price-range-slider">
+                            <div id="slider-range" class="range-bar"></div>
+                            <p class="range-value">
+                                <input type="text" id="amount" readonly>
+                                <!-- {{ min_price + ' - ' + max_price }} -->
+                            </p>
+                        </div>
+                    </div>
+                    <div class="shop_filter">
+                        <h4 class="filter_title">Dimensiones:</h4>
+                        <div class="size_selector d-flex">
+                            <ng-container *ngFor="let size of sizes">
+                                <div class="single_size_opt mx-1">
+                                    <input type="radio" hidden name="size" class="size_inp"
+                                        (click)="addSizeProduct(size)" [attr.id]="'size-'+size.name">
+                                    <label [attr.for]="'size-'+size.name">{{ size.name }}</label>
+                                </div>
+                            </ng-container>
+
+
+                        </div>
+                    </div>
+                    <div class="shop_filter border-bottom-0 pb-0 mb-0">
+                        <h4 class="filter_title">Colores: </h4>
+                        <div class="size_selector color_selector d-flex align-items-center">
+                            <ng-container *ngFor="let color of colores">
+                                <div class="single_size_opt" *ngIf="color.product_color_sizes_count > 0">
+                                    <input type="radio" hidden name="color" class="size_inp"
+                                        (click)="addColorProduct(color)" [attr.id]="'color-'+color.name">
+                                    <label [attr.for]="'color-'+color.name" [ngStyle]="{'background': color.code}"
+                                        data-bs-toggle="tooltip" [attr.title]="color.name"></label>
+                                </div>
+                            </ng-container>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-8">
+                <div class="d-flex align-items-center">
+                    <div class="d-block d-lg-none">
+                        <button class="default_btn py-2 me-3 rounded" id="mobile_filter_btn">Filter</button>
+                    </div>
+                    <div class="sorting_filter d-none d-sm-block">
+                        <select class="nice_select">
+                            <option value="">Default sorting</option>
+                            <option value="">Price low-high</option>
+                            <option value="">Price high-low</option>
+                        </select>
+                    </div>
+                    <div class="view_filter d-flex align-items-center ms-auto">
+                        <a href="shop-grid.html">
+                            <div class="view_icon"><i class="icon-grid"></i></div>
+                        </a>
+                        <a href="shop-list.html">
+                            <div class="view_icon active"><i class="las la-list-ul"></i></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="shop_products">
+                    <div class="list_view_products">
+                        <ng-container *ngFor="let product of products">
+                            <div class="single_list_product">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="list_product_img">
+                                            <div class="lp_img">
+                                                <a [href]="'/producto/'+product.slug">
+                                                    <img loading="lazy" [src]="product.imagen" alt="product">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="product_content">
+                                            <a [href]="'/producto/'+product.slug">
+                                                <h5>{{ product.tittle }}</h5>
+                                            </a>
+                                            <div class="ratprice">
+                                                <div class="price" *ngIf="product.discount_g">
+                                                    <span class="prev_price  px-2">{{ product.price_soles }} PEN</span>
+                                                    <span class="org_price  px-2">{{
+                                                        getNewPriceS(product.price_soles,product.discount_g) }}
+                                                        PEN</span>
+                                                </div>
+                                                <div class="price" *ngIf="!product.discount_g">
+                                                    <!-- <span class="org_price">$45.00</span> -->
+                                                    <span class="org_price  px-2">{{ product.price_soles }} PEN</span>
+                                                </div>
+                                                <div class="rating">
+                                                    <div class="d-flex align-items-center justify-content-start">
+                                                        <div class="rating_star">
+                                                            <span><i class="la-star"
+                                                                    [ngClass]="{'las': product.avg_rating >= 1,'lar': product.avg_rating < 1}"></i></span>
+                                                            <span><i class="la-star"
+                                                                    [ngClass]="{'las': product.avg_rating >= 2,'lar': product.avg_rating < 2}"></i></span>
+                                                            <span><i class="la-star"
+                                                                    [ngClass]="{'las': product.avg_rating >= 3,'lar': product.avg_rating < 3}"></i></span>
+                                                            <span><i class="la-star"
+                                                                    [ngClass]="{'las': product.avg_rating >= 4,'lar': product.avg_rating < 4}"></i></span>
+                                                            <span><i class="la-star"
+                                                                    [ngClass]="{'las': product.avg_rating >= 5,'lar': product.avg_rating < 5}"></i></span>
+                                                        </div>
+                                                        <p class="rating_count">({{ product.reviews_count }})</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="product_list_desc">
+                                                {{ product.resumen }}
+                                            </p>
+                                            <div class="product_list_btns">
+                                                <button class="list_product_btn" (click)="addCart(product)"><span
+                                                        class="icon"><i class="icon-cart"></i></span> Add to
+                                                    Cart</button>
+                                                <button class="list_product_btn wish" (click)="addWish(product)"><span
+                                                        class="icon"><i class="icon-heart"></i></span> Wishlist</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="pagination_wrp d-flex align-items-center justify-content-center">
+                    <div class="single_paginat active">1</div>
+                    <div class="single_paginat">2</div>
+                    <div class="single_paginat">3</div>
+                    <div class="single_paginat">4</div>
+                    <div class="single_paginat"><i class="las la-long-arrow-alt-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
