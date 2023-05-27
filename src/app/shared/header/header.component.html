@@ -403,11 +403,12 @@
                         </select>
                     </div>
                     <div class="search_input">
-                        <input type="text" placeholder="Search product..." id="show_suggest">
+                        <input type="text" [(ngModel)]="search_product" (keyup.enter)="searchForEnter()"
+                            placeholder="Buscar Producto..." id="show_suggest" #filter>
                     </div>
                     <div class="search_subimt">
                         <button>
-                            <span class="d-none d-sm-inline-block">Search</span>
+                            <span class="d-none d-sm-inline-block" (click)="searchForEnter()">Buscar</span>
                             <span class="d-sm-none d-inline-block"><i class="icon-search-left"></i></span>
                         </button>
                     </div>

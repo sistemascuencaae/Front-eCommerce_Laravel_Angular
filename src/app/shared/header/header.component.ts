@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth-profile/_services/auth.service';
 import { CartShopsService } from 'src/app/modules/home/_services/cart-shops.service';
 import { HomeService } from 'src/app/modules/home/_services/home.service';
@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
     public router: Router,
     public _cartService: CartShopsService,
     public _homeService: HomeService,
+    public activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -83,8 +84,8 @@ export class HeaderComponent implements OnInit {
   }
 
   searchForEnter() {
-    // console.log(this.search_product);
-    // this.router.navigateByUrl("lista-de-productos-totales?search_product="+this.search_product);
+    console.log(this.search_product);
+    this.router.navigateByUrl("lista-de-productos-totales?search_product=" + this.search_product);
   }
 
   removeItem(cart: any) {

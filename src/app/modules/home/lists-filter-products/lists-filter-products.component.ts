@@ -38,7 +38,9 @@ export class ListsFilterProductsComponent {
   ) { }
 
   ngOnInit(): void {
+    this.barraBuscadorProducto();
     this.listProducts();
+
     this.listconfigInitialFilter();
     this.funcionScriptRange();
   }
@@ -58,6 +60,14 @@ export class ListsFilterProductsComponent {
       stop: () => { // Se ejecuta cuando haya terminado de elegir un rango de precio
         this.listProducts();
       }
+    });
+  }
+
+  barraBuscadorProducto() {
+    this.activedRoute.queryParams.subscribe((resp: any) => {
+      console.log(resp);
+      this.search_product = resp["search_product"];
+      this.listProducts();
     });
   }
 
