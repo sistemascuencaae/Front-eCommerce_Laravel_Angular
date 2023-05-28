@@ -67,6 +67,7 @@ export class ListsFilterProductsComponent {
     this.activedRoute.queryParams.subscribe((resp: any) => {
       console.log(resp);
       this.search_product = resp["search_product"];
+      this.categorie_id = resp["categorie_id"];
       this.listProducts();
     });
   }
@@ -86,6 +87,7 @@ export class ListsFilterProductsComponent {
     if (this.categorie_id) {
       this.categories_array.push(this.categorie_id);
     }
+
     let data = {
       categories: this.categories_array,
       review: this.review_selected,
@@ -95,8 +97,10 @@ export class ListsFilterProductsComponent {
       color_id: this.color_selected,
       search_product: this.search_product,
     }
+
     this._homeServices.listProducts(data).subscribe((resp: any) => {
-      console.log(resp);
+      // console.log("resp list products");
+      // console.log(resp);
       this.products = resp.products;
 
       if (this.categorie_id) {

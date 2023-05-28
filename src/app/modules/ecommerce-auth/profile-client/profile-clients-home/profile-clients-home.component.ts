@@ -26,20 +26,25 @@ export class ProfileClientsHomeComponent {
   ) { }
 
   ngOnInit(): void {
+    // LLamada desde el boton wishlist a la ruta del componente wishlist
+    this.ativerouter.queryParams.subscribe((resp: any) => {
+      this.selected_menu = resp["selected_menu"];
+    })
     this.user = this._profileHomeService._authServices.user;
     this._profileHomeService.listInforGeneralClient().subscribe((resp: any) => {
-      console.log('respuesta listInfogeneralCliente');
-      console.log(resp);
+      if (this.selected_menu) {
+        this.selectorMenu = this.selected_menu;
+      } else {
+        this.selectorMenu = 1;
+      }
       this.user_selected = resp.user;
       this.listAdrees = resp.address;
       this.listOrders = resp.orders.data;
       this.listReviews = resp.reviews;
-      // this.wishList = resp.wishlists;
+      // this.wishLists = resp.wishlists;
     })
-
   }
   selectedMenu(value: any) {
     this.selectorMenu = value;
-    console.log(this.selectorMenu);
   }
 }

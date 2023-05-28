@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 
 
 // export class authGuard implements CanActivateFn {
-export class authGuard {
+export class authGuard implements CanActivate {
 
   constructor(public authService: AuthService,
     public router: Router) {
@@ -18,7 +18,7 @@ export class authGuard {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
-    return true;
+    // return true;
 
     //Si no tiene usuario y token 
     if (!this.authService.user && !this.authService.token) {
@@ -26,7 +26,7 @@ export class authGuard {
       return false; //False no debe permitir el acceso
     }
     let token = this.authService.token;
-    let expiracion = (JSON.parse(atob(token.aplit('.')[1]))).exp; //Ver si esta expirado el token
+    let expiracion = (JSON.parse(atob(token.split('.')[1]))).exp; //Ver si esta expirado el token
 
     if(Math.floor((new Date).getTime()/1000) >= expiracion){
       this.authService.logout();

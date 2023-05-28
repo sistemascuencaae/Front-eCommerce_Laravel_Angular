@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { fromEvent, debounceTime } from 'rxjs';
 import { AuthService } from 'src/app/modules/auth-profile/_services/auth.service';
 import { CartShopsService } from 'src/app/modules/home/_services/cart-shops.service';
 import { HomeService } from 'src/app/modules/home/_services/home.service';
@@ -9,7 +10,7 @@ import { HomeService } from 'src/app/modules/home/_services/home.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
 
   user: any = null;
   listCarts: any = [];
@@ -36,12 +37,32 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.user;
-    console.log(this.user);
-    this._cartService.listCartShop().subscribe((resp: any) => {
+    // console.log(this.user);
+
+    if (this.user) {
+
+      this._cartService.listCartShop().subscribe((resp: any) => {
+        // console.log(resp);
+        resp.carts.data.forEach((element: any) => {
+          this._cartService.changeCart(element);
+        });;
+      })
+
+      this._cartService.listWish().subscribe((resp: any) => {
+        // console.log(resp);
+        resp.wishlists.forEach((element: any) => {
+          this._cartService.changeWish(element);
+        });;
+      })
+    }
+
+    this._homeService.configInitialfilter().subscribe((resp: any) => {
+      this.categories = resp.categories;
+    });
+
+    this._cartService.currentDataWish$.subscribe((resp: any) => {
       // console.log(resp);
-      resp.carts.data.forEach((element: any) => {
-        this._cartService.changeCart(element);
-      });;
+      this.listWish = resp;
     })
 
     this._cartService.currentDataCart$.subscribe((resp: any) => {
@@ -49,42 +70,29 @@ export class HeaderComponent implements OnInit {
       this.listCarts = resp;
       this.TotalPrice = this.listCarts.reduce((sum: any, item: any) => sum + item.total, 0);
     })
-
-    this._cartService.listWish().subscribe((resp: any) => {
-      // console.log(resp);
-      resp.wishlists.forEach((element: any) => {
-        this._cartService.changeWish(element);
-      });;
-    })
-
-    this._cartService.currentDataWish$.subscribe((resp: any) => {
-      console.log(resp);
-      // resp.wishlists.forEach((element: any) => {
-      //   this._cartService.changeWish(element);
-      // });;
-      this.listWish = resp;
-    })
-
   }
 
   ngAfterViewInit(): void {
-    // this.source = fromEvent(this.filter?.nativeElement, "keyup");
-    // this.source.pipe(debounceTime(500)).subscribe((c:any) => {
-    //   console.log(this.search_product);
-    //   let data = {
-    //     search_product: this.search_product,
-    //   }
-    //   if(this.search_product.length > 1){
-    //     this._homeService.listProducts(data).subscribe((resp:any) => {
-    //       console.log(resp);
-    //       this.sugerencias = resp.products;
-    //     })
-    //   }
-    // })
+    this.source = fromEvent(this.filter?.nativeElement, "keyup");
+    this.source.pipe(debounceTime(500)).subscribe((c: any) => {
+      // console.log(this.search_product);
+      let data = {
+        search_product: this.search_product,
+      }
+      if (this.search_product.length > 1) {
+        this._homeService.listProducts(data).subscribe((resp: any) => {
+          this.sugerencias = resp.products;
+        })
+      }
+
+      if (this.search_product.length < 1) {
+        this.sugerencias = [];
+      }
+    })
   }
 
   searchForEnter() {
-    console.log(this.search_product);
+    // console.log(this.search_product);
     this.router.navigateByUrl("lista-de-productos-totales?search_product=" + this.search_product);
   }
 

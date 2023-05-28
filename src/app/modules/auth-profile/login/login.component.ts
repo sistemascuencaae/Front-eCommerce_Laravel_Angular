@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(this.email, this.password).subscribe((resp: any) => {
-      console.log(resp);
+      // console.log(resp);
 
       //Si la respuesta en el servicio no tiene errores
       if (!resp.error && resp) {  //si la respuesta no tiene errores Y si la respuesta en verdadero

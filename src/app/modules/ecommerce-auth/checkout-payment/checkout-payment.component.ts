@@ -250,8 +250,8 @@ export class CheckoutPaymentComponent {
         //     console.log('Transaction completed');
         // };
         let Order = await actions.order.capture();
-        console.log('Order');
-        console.log(Order);
+        // console.log('Order');
+        // console.log(Order);
         let dataSale = {
           sale: {
             user_id: this.user.id,
@@ -362,7 +362,7 @@ export class CheckoutPaymentComponent {
       email: this.email,
     }
     this._saleService.addAddressUser(data).subscribe((resp: any) => {
-      console.log(resp);
+      // console.log(resp);
       this.selectAddress(resp.address);
       this.listAdrees.unshift(resp.address);
       alert("LA DIRECCIÓN SE HA REGISTRADO CORRECTAMENTE");
@@ -426,7 +426,7 @@ export class CheckoutPaymentComponent {
       // email: this.user.email,
       email: "stackdevelopers29@gmail.com",
     };
-    console.log("data CULQI");
+    // console.log("data CULQI");
     console.log(data);
     // 1000
     this._culqiService.GETTOKENCULQI(data).subscribe((resp: any) => {
