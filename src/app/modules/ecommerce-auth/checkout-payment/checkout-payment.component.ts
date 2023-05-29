@@ -57,7 +57,7 @@ export class CheckoutPaymentComponent {
     this._cartService.currentDataCart$.subscribe((resp: any) => {
       // console.log(resp);
       this.listCarts = resp;
-      this.TotalPrice = this.listCarts.reduce((sum: any, item: any) => (sum + item.total), 0);
+      this.TotalPrice = this.listCarts.reduce((sum: any, item: any) => (sum + parseInt(item.total)), 0);
     })
     this.user = this._cartService._authServices.user;
     this._saleService.listAddressUser().subscribe((resp: any) => {
@@ -69,137 +69,6 @@ export class CheckoutPaymentComponent {
     this.paypal();
 
   }
-
-  // paypal() {
-  //   paypal.Buttons({
-  //     // optional styling for buttons
-  //     // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
-  //     style: {
-  //       color: "gold",
-  //       shape: "rect",
-  //       layout: "vertical"
-  //     },
-
-  //     // set up the transaction
-  //     createOrder: (data: any, actions: any) => {
-  //       // pass in any options from the v2 orders create call:
-  //       // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
-
-  //       const createOrderPayload = {
-  //         purchase_units: [
-  //           {
-  //             amount: {
-  //               description: "COMPRAR POR EL ECOMMERCE",
-  //               // value: (this.TotalPrice / this.ConversationDolar).toFixed(2)
-  //               value: "98.22"
-  //             }
-  //           }
-  //         ]
-  //       };
-
-  //       return actions.order.create(createOrderPayload);
-  //     },
-
-  //     // finalize the transaction
-  //     onApprove: async (data: any, actions: any) => {
-  //       const captureOrderHandler = (details: any) => {
-  //         const payerName = details.payer.name.given_name;
-  //         console.log('Transaction completed');
-  //       };
-
-  //       return actions.order.capture().then(captureOrderHandler);
-  //     },
-
-  //     // handle unrecoverable errors
-  //     onError: (err: any) => {
-  //       console.error('An error prevented the buyer from checking out with PayPal');
-  //     }
-  //   }).render(this.paypalElement?.nativeElement);
-  // }
-
-  // paypal() {
-  //   paypal.Buttons({
-  //     // optional styling for buttons
-  //     // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
-  //     style: {
-  //       color: "gold",
-  //       shape: "rect",
-  //       layout: "vertical"
-  //     },
-
-  //     // set up the transaction
-  //     createOrder: (data: any, actions: any) => {
-  //       // pass in any options from the v2 orders create call:
-  //       // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
-
-  //       if (this.TotalPrice == 0) {
-  //         alert("EL TOTAL DE LA VENTA DEBE SER MAYOR A 0");
-  //         return false;
-  //       }
-  //       if (this.listCarts.length == 0) {
-  //         alert("EL CARRITO DE COMPRAS ESTA VACIO");
-  //         return false;
-  //       }
-
-  //       if (!this.address_selected) {
-  //         alert("NECESITAS SELECCIONAR UNA DIRECCIÓN");
-  //         return false;
-  //       }
-
-  //       const createOrderPayload = {
-  //         purchase_units: [
-  //           {
-  //             amount: {
-  //               value: (this.TotalPrice / this.ConversationDolar).toFixed(2)
-  //             }
-  //           }
-  //         ]
-  //       };
-
-  //       return actions.order.create(createOrderPayload);
-  //     },
-
-  //     // finalize the transaction
-  //     onApprove: async (data: any, actions: any) => {
-  //       // const captureOrderHandler = (details: any) => {
-  //       //   const payerName = details.payer.name.given_name;
-  //       //   console.log('Transaction completed');
-  //       // };
-  //       let Order = await actions.order.capture();
-  //       let dataSale = {
-  //         sale: {
-  //           user_id: this.user.id,
-  //           method_payment: 'PAYPAL',
-  //           currency_total: 'PEN',
-  //           currency_payment: 'USD',
-  //           total: (this.TotalPrice / this.ConversationDolar).toFixed(2),
-  //           price_dolar: this.ConversationDolar,
-  //           n_transaccion: Order.purchase_units[0].payments.captures[0].id,
-  //         },
-  //         sale_address: {
-  //           full_name: this.address_selected.full_name,
-  //           full_surname: this.address_selected.full_surname,
-  //           company_name: this.address_selected.company_name,
-  //           county_region: this.address_selected.county_region,
-  //           direccion: this.address_selected.direccion,
-  //           city: this.address_selected.city,
-  //           zip_code: this.address_selected.zip_code,
-  //           phone: this.address_selected.phone,
-  //           email: this.address_selected.email,
-  //         },
-  //       }
-  //       this._saleService.storeSale(dataSale).subscribe((resp: any) => {
-  //         console.log(resp);
-  //       })
-  //       // return actions.order.capture().then(captureOrderHandler);
-  //     },
-
-  //     // handle unrecoverable errors
-  //     onError: (err: any) => {
-  //       console.error('An error prevented the buyer from checking out with PayPal');
-  //     }
-  //   }).render(this.paypalElement?.nativeElement);
-  // }
 
   paypal() {
     paypal.Buttons({
