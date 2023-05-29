@@ -25,9 +25,11 @@ export class ShoppingCartsComponent {
       this.ConversationDolar = resp.Cotizacion[0].Venta;
     })
     this._cartService.currentDataCart$.subscribe((resp: any) => {
+      console.log("LISTS CARTS");
       console.log(resp);
       this.listCarts = resp;
-      this.TotalPrice = this.listCarts.reduce((sum: any, item: any) => sum + item.total, 0);
+      // this.TotalPrice = this.listCarts.reduce((sum: any, item: any) => sum + item.total, 0);
+      this.TotalPrice = this.listCarts.reduce((sum: any, item: any) => sum + parseInt(item.total), 0);
     })
   }
 
