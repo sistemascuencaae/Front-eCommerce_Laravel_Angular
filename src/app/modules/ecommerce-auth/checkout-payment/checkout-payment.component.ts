@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 declare var paypal: any;
 declare function alertDanger([]): any;
 declare function alertSuccess([]): any;
+declare function methodPayment(): any;
 @Component({
   selector: 'app-checkout-payment',
   templateUrl: './checkout-payment.component.html',
@@ -62,6 +63,7 @@ export class CheckoutPaymentComponent {
     this.user = this._cartService._authServices.user;
     this._saleService.listAddressUser().subscribe((resp: any) => {
       // console.log(resp);
+      methodPayment();
       this.listAdrees = resp.address;
       this.status_view = this.listAdrees.length == 0 ? true : false;
     })
@@ -146,7 +148,8 @@ export class CheckoutPaymentComponent {
 
         this._saleService.storeSale(dataSale).subscribe((resp: any) => {
           console.log(resp);
-          // alertSuccess(resp.message_text);
+          // alert(resp.message_text);
+          this.router.navigateByUrl("/perfil-del-cliente?selected_menu=4");
         })
         // location.reload();
         // return actions.order.capture().then(captureOrderHandler);

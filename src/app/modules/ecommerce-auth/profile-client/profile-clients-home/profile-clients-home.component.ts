@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileClientService } from '../../_services/profile-client.service';
+import { URL_BACKEND } from 'src/app/config/config';
 
 @Component({
   selector: 'app-profile-clients-home',
@@ -8,7 +9,7 @@ import { ProfileClientService } from '../../_services/profile-client.service';
   styleUrls: ['./profile-clients-home.component.scss']
 })
 export class ProfileClientsHomeComponent {
-
+  URL_BACKEND = URL_BACKEND;
   selectorMenu: any = 0;
   user: any;
 

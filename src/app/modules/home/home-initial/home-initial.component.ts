@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HomeService } from '../_services/home.service';
 import { AuthService } from '../../auth-profile/_services/auth.service';
 import { CartShopsService } from '../_services/cart-shops.service';
+import { URL_BACKEND } from 'src/app/config/config';
 
 declare var $: any;
 declare function hero_slider_active(): any;
@@ -12,6 +13,8 @@ declare function hero_slider_active(): any;
   styleUrls: ['./home-initial.component.scss']
 })
 export class HomeInitialComponent {
+  URL_BACKEND = URL_BACKEND;
+
   sliders: any = [];
   group_categories_product: any = [];
   products_aletorio_a: any = [];
@@ -26,6 +29,7 @@ export class HomeInitialComponent {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.URL_BACKEND);
 
     this._homeService.getHome().subscribe((resp: any) => {
       console.log(resp);

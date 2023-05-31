@@ -170,7 +170,7 @@
                     <ng-container *ngFor="let review of reviews">
                         <div class="single_review_wrp">
                             <div class="review_avatar">
-                                <img loading="lazy" [src]="review.user.avatar" alt="user">
+                                <img loading="lazy" src="{{URL_BACKEND+review.user.avatar}}" alt="user">
                             </div>
                             <div class="review_content">
                                 <h5>{{ review.user.full_name }}</h5>
@@ -211,7 +211,7 @@
                 <div class="single_new_arrive">
                     <div class="sna_img">
                         <a [href]="'/producto/'+product.slug">
-                            <img loading="lazy" class="prd_img" [src]="product.imagen" alt="product">
+                            <img loading="lazy" class="prd_img" src="{{URL_BACKEND+product.imagen}}" alt="product">
                         </a>
                         <span class="tag">Hot</span>
                         <div class="prodcut_hovcont">

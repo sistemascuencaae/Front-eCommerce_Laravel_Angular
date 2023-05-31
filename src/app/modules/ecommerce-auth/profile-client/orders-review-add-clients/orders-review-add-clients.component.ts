@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProfileClientService } from '../../_services/profile-client.service';
+import { URL_BACKEND } from 'src/app/config/config';
 
 @Component({
   selector: 'app-orders-review-add-clients',
@@ -7,6 +8,7 @@ import { ProfileClientService } from '../../_services/profile-client.service';
   styleUrls: ['./orders-review-add-clients.component.scss']
 })
 export class OrdersReviewAddClientsComponent {
+  URL_BACKEND = URL_BACKEND;
   @Input() IS_FORM: any = false;
   @Input() sale_detail: any;
   @Output() Review: EventEmitter<any> = new EventEmitter();

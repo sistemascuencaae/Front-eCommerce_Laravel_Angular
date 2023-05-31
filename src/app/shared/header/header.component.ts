@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, debounceTime } from 'rxjs';
+import { URL_BACKEND } from 'src/app/config/config';
 import { AuthService } from 'src/app/modules/auth-profile/_services/auth.service';
 import { CartShopsService } from 'src/app/modules/home/_services/cart-shops.service';
 import { HomeService } from 'src/app/modules/home/_services/home.service';
@@ -11,7 +12,7 @@ import { HomeService } from 'src/app/modules/home/_services/home.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-
+  URL_BACKEND = URL_BACKEND;
   user: any = null;
   listCarts: any = [];
 

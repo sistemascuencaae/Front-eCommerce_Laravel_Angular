@@ -146,7 +146,7 @@
                         <ng-container *ngFor="let sugerencia of sugerencias">
                             <a [href]="'/producto/'+sugerencia.slug" class="single_sresult_product">
                                 <div class="sresult_img">
-                                    <img loading="lazy" [src]="sugerencia.imagen" alt="product">
+                                    <img loading="lazy" src="{{URL_BACKEND+sugerencia.imagen}}" alt="product">
                                 </div>
                                 <div class="sresult_content">
                                     <h4>{{ sugerencia.tittle }}</h4>
@@ -185,7 +185,8 @@
                                     <span class="remove_cart" (click)="removeItem(cart)"><i
                                             class="las la-times"></i></span>
                                     <div class="cartdrop_img">
-                                        <img loading="lazy" [src]="cart.product.imagen" alt="product">
+                                        <!-- <img loading="lazy" src="{{URL_BACKEND +cart.product.imagen}}" alt="product"> -->
+                                        <img loading="lazy" src="{{URL_BACKEND+cart.product.imagen}}" alt="product">
                                     </div>
                                     <div class="cartdrop_cont">
                                         <h5 class="text_lg mb-0 default_link">

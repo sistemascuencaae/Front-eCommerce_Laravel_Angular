@@ -20,7 +20,7 @@
                     <ng-container *ngFor="let cart of listCarts">
                         <div class="single_shop_cart d-flex align-items-center flex-wrap">
                             <div class="cart_img mb-4 mb-md-0">
-                                <img loading="lazy" [src]="cart.product.imagen" alt="product">
+                                <img loading="lazy" src="{{URL_BACKEND+cart.product.imagen}}" alt="product">
                             </div>
                             <div class="cart_cont">
                                 <a [href]="'/producto/'+cart.product.slug">

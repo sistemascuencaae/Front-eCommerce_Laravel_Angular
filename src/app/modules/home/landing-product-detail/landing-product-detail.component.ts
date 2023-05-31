@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HomeService } from '../_services/home.service';
 import { AuthService } from '../../auth-profile/_services/auth.service';
 import { CartShopsService } from '../_services/cart-shops.service';
+import { URL_BACKEND } from 'src/app/config/config';
 
 @Component({
   selector: 'app-landing-product-detail',
@@ -10,7 +11,7 @@ import { CartShopsService } from '../_services/cart-shops.service';
   styleUrls: ['./landing-product-detail.component.scss']
 })
 export class LandingProductDetailComponent {
-
+  URL_BACKEND=URL_BACKEND;
   product_selected: any = null;
   slug_product: any = null;
 

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { URL_BACKEND } from 'src/app/config/config';
 
 @Component({
   selector: 'app-orders-clients',
@@ -7,6 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class OrdersClientsComponent {
   @Input() listOrders: any = [];
+
+  URL_BACKEND = URL_BACKEND;
   constructor() { }
 
   ngOnInit(): void {

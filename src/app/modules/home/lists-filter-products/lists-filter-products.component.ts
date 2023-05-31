@@ -3,6 +3,7 @@ import { HomeService } from '../_services/home.service';
 import { AuthService } from '../../auth-profile/_services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CartShopsService } from '../_services/cart-shops.service';
+import { URL_BACKEND } from 'src/app/config/config';
 
 declare var $: any;
 
@@ -12,6 +13,7 @@ declare var $: any;
   styleUrls: ['./lists-filter-products.component.scss']
 })
 export class ListsFilterProductsComponent {
+  URL_BACKEND=URL_BACKEND;
   products: any = [];
 
   reviews: any = [];

@@ -502,3 +502,12 @@ function alertSuccess(TEXT) {
         document.getElementById("notification-ecommerce-success")?.classList.remove("notification-show");
     });
 }
+
+function methodPayment() {
+    $('.single_payment_method').on('click', function () {
+        let getCls = $(this).attr('data-target')
+        $('.single_payment_method, .payment_methods').removeClass('active')
+        $(getCls).addClass('active')
+        $(this).addClass('active')
+    })
+}

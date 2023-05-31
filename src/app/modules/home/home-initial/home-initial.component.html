@@ -10,7 +10,7 @@
                                 <div class="col-12">
                                     <div class="hero_img">
                                         <img loading="lazy" style="max-height: initial !important;"
-                                            [src]="slider.imagen" alt="phone">
+                                            src="{{URL_BACKEND+slider.imagen}}" alt="phone">
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,8 @@
                         <div class="single_top_ranking">
                             <div class="topr_img" style="width: auto;">
                                 <a [routerLink]="[ '/producto/', product.slug ]">
-                                    <img loading="lazy" style="width: 60.5px !important;" [src]="product.imagen"
+                                    <!-- <img loading="lazy" style="width: 60.5px !important;" [src]="product.imagen" -->
+                                    <img loading="lazy" style="width: 60.5px !important;" src="{{ URL_BACKEND+product.imagen}}"
                                         alt="product">
                                 </a>
                                 <span class="tag">1</span>
@@ -147,7 +148,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_new_arrive">
                         <div class="sna_img">
-                            <img loading="lazy" class="prd_img" [src]="products_aletorio.imagen" alt="product">
+                            <img loading="lazy" class="prd_img" src="{{URL_BACKEND+products_aletorio.imagen}}" alt="product">
                             <span class="tag">Hot</span>
                             <div class="prodcut_hovcont">
                                 <a href="javascript:void(0)" class="icon open_quickview"
@@ -235,7 +236,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_new_arrive">
                         <div class="sna_img">
-                            <img loading="lazy" class="prd_img" [src]="products_aletorio.imagen" alt="product">
+                            <img loading="lazy" class="prd_img" src="{{URL_BACKEND+products_aletorio.imagen}}" alt="product">
                             <span class="tag">Hot</span>
                             <div class="prodcut_hovcont">
                                 <a href="javascript:void(0)" class="icon open_quickview"

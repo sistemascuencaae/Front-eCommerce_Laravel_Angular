@@ -2,7 +2,7 @@
     <ng-container *ngFor="let wish of listWish">
         <div class="single_shop_cart d-flex align-items-center flex-wrap mt-0">
             <div class="cart_img mb-4 mb-md-0">
-                <img loading="lazy" [src]="wish.product.imagen" alt="product">
+                <img loading="lazy" src="{{URL_BACKEND+wish.product.imagen}}" alt="product">
             </div>
             <div class="cart_cont">
                 <a [href]="'/producto/'+wish.product.slug">

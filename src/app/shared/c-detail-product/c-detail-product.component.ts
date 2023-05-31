@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { URL_BACKEND } from 'src/app/config/config';
 import { AuthService } from 'src/app/modules/auth-profile/_services/auth.service';
 import { CartShopsService } from 'src/app/modules/home/_services/cart-shops.service';
 
@@ -10,6 +11,7 @@ declare function loadModalDetailProduct(): any;
   styleUrls: ['./c-detail-product.component.scss']
 })
 export class CDetailProductComponent {
+  URL_BACKEND=URL_BACKEND;
   @Input() product_selected_modal: any;
   @Input() is_landing: boolean = false;
   color_size_selecteds: any = [];

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { URL_BACKEND } from 'src/app/config/config';
 
 @Component({
   selector: 'app-orders-review-clients',
@@ -6,6 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./orders-review-clients.component.scss']
 })
 export class OrdersReviewClientsComponent {
+  URL_BACKEND = URL_BACKEND;
   @Input() listReviews: any = [];
   IS_FORM: any = false;
   sale_detail: any;

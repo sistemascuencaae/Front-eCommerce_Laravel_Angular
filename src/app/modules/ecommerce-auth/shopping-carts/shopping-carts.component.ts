@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartShopsService } from '../../home/_services/cart-shops.service';
+import { URL_BACKEND } from 'src/app/config/config';
 
 declare function alertDanger([]): any;
 declare function alertSuccess([]): any;
@@ -9,7 +10,7 @@ declare function alertSuccess([]): any;
   styleUrls: ['./shopping-carts.component.scss']
 })
 export class ShoppingCartsComponent {
-
+  URL_BACKEND=URL_BACKEND;
   listCarts: any = [];
   TotalPrice: any = 0;
   ConversationDolar: any = 3.8;

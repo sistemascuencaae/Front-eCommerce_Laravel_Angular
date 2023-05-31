@@ -3,7 +3,7 @@
     <ng-container *ngFor="let review of listReviews">
         <div class="order_prodetails d-flex flex-wrap shadow_sm padding_default mt-0">
             <div class="orderprod_img">
-                <img loading="lazy" [src]="review.product.imagen" alt="product">
+                <img loading="lazy" src="{{URL_BACKEND+review.product.imagen}}" alt="product">
             </div>
             <div class="single_orderdet pdname">
                 <h5>{{ review.product.tittle }}</h5>

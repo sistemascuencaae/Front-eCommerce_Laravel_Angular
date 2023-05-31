@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { URL_BACKEND } from 'src/app/config/config';
 import { CartShopsService } from 'src/app/modules/home/_services/cart-shops.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { CartShopsService } from 'src/app/modules/home/_services/cart-shops.serv
   styleUrls: ['./wishlist-clients.component.scss']
 })
 export class WishlistClientsComponent {
-
+  URL_BACKEND = URL_BACKEND;
   listWish: any = [];
   constructor(
     public _cartService: CartShopsService,

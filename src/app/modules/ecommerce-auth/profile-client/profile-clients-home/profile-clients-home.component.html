@@ -17,7 +17,7 @@
                     <div class="account_profile position-relative shadow_sm">
                         <div class="acprof_img">
                             <a href="account.html" *ngIf="user_selected">
-                                <img loading="lazy" [src]="user_selected.avatar" alt="user">
+                                <img loading="lazy" src="{{URL_BACKEND+user_selected.avatar}}" alt="user">
                             </a>
                         </div>
                         <div class="acprof_cont" *ngIf="user">
